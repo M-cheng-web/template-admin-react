@@ -26,6 +26,7 @@ module.exports = {
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
+    "@typescript-eslint/no-explicit-any": "off",
     'prettier/prettier': [
       'error',
       {
