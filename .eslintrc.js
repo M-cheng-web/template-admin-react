@@ -40,6 +40,8 @@ module.exports = {
     "@typescript-eslint/no-unused-expressions": "off",
     "no-param-reassign": "off",
     "class-methods-use-this": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "react/no-unused-prop-types": "off",
     // "import/no-extraneous-dependencies": {
     //   "devDependencies": true,
     //   "peerDependencies": true,

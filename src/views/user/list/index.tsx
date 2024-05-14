@@ -3,9 +3,10 @@ import { useRequest } from 'ahooks';
 import { Button, Col, Flex, Row } from 'antd';
 import { t } from 'i18next';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import type { FC } from 'react';
 import UserCard from '@/components/UserCard';
 
 import { getUsersList } from '@/api';
@@ -13,7 +14,6 @@ import { getUsersList } from '@/api';
 import useStyles from './style';
 
 import type { ListResult, UserItemType } from '../types';
-import type { FC } from 'react';
 
 interface PUSerList {
   data?: {
@@ -34,12 +34,13 @@ const UserList: FC<PUSerList> = () => {
   useEffect(() => {
     setTableTableData(user?.list || []);
   }, [user]);
+
   return (
     <Flex gap={16} vertical>
-      <Flex justify={'end'}>
+      <Flex justify="end">
         <Button
           className={cx(styles['add-button'])}
-          type='primary'
+          type="primary"
           icon={<PlusOutlined />}
           onClick={() => navigate('/user/add-user')}
         >
