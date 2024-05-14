@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'antd-style';
 import { useEffect, useState } from 'react';
-import { HashRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { useGlobalStore } from '@/stores-common';
 import { GlobalConfig } from '@/ui-common';
 
