@@ -27,6 +27,10 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     "@typescript-eslint/no-explicit-any": "off",
+    "import/no-extraneous-dependencies": {
+      "devDependencies": true,
+      "peerDependencies": true,
+    },
     'prettier/prettier': [
       'error',
       {

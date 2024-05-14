@@ -9,7 +9,6 @@ export const GuardRoute = ({ children }: { children: ReactNode }) => {
   const { pathname } = useLocation();
   const { token } = useUserToken();
   if (!token) {
-    debugger;
     if (whiteList.includes(pathname)) {
       return <Navigate to='/login' replace />;
     }
