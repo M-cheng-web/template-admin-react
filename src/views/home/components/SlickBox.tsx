@@ -52,7 +52,7 @@ const SlickBox = () => {
           </Translatex>
         </div>
       </div>
-      <div className="image-box">
+      {/* <div className="image-box">
         <img src={cover_2} alt="" />
         <div className="img-info">
           <Translatex run={current === 2} delay={100}>
@@ -131,7 +131,7 @@ const SlickBox = () => {
             </Text>
           </Translatex>
         </div>
-      </div>
+      </div> */}
     </BaseSlick>
   );
 };

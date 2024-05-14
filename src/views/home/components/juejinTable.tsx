@@ -18,7 +18,7 @@ const fields: Array<any> = [
       // eslint-disable-next-line @typescript-eslint/naming-convention
       const { title, article_id } = record;
       return (
-        <a href={`https://juejin.cn/post/${article_id}`} target='_blank' rel='noreferrer'>
+        <a href={`https://juejin.cn/post/${article_id}`} target="_blank" rel="noreferrer">
           {title}
         </a>
       );
