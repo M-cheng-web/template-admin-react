@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import type { MenuProps } from 'antd';
 import SvgIcon from '@/components/SvgIcon';
 
 import { getOpenKeys } from '@/utils/helper/menuHelper';
@@ -14,7 +15,6 @@ import { getAsyncMenus } from '@/router/menus';
 import { setMenuList } from '@/stores/modules/menu';
 
 import type { AppMenu } from '@/router/types';
-import type { MenuProps } from 'antd';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -31,7 +31,7 @@ const getItem = (
     icon,
     children,
     type,
-  }) as MenuItem;
+  } as MenuItem);
 
 const LayoutMenu = (props: any) => {
   const { pathname } = useLocation();
@@ -51,7 +51,7 @@ const LayoutMenu = (props: any) => {
   const addIcon = (icon?: string, iconSize?: number) => {
     if (!icon) return null;
     return (
-      <span className='anticon'>
+      <span className="anticon">
         <SvgIcon name={icon} size={iconSize || 16} />
       </span>
     );
@@ -62,9 +62,15 @@ const LayoutMenu = (props: any) => {
       if (!item?.children?.length) {
         return list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize)));
       }
-      console.log(t(item.name));
 
-      list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
+      list.push(
+        getItem(
+          t(item.name),
+          item.path,
+          addIcon(item.icon, item.iconSize),
+          getMenuItem(item.children),
+        ),
+      );
     });
     return list;
   };
@@ -95,19 +101,17 @@ const LayoutMenu = (props: any) => {
   const handleMenuClick: MenuProps['onClick'] = ({ key }: { key: string }) => {
     navigate(key);
   };
-  const a = 1;
-  console.log(a);
 
   return (
-    <div className='layout_menu'>
-      <Spin spinning={loading} tip='Loading...'>
+    <div className="layout_menu">
+      <Spin spinning={loading} tip="Loading...">
         <Menu
           // theme='dark'
           style={{
             border: 'none',
           }}
-          mode='inline'
-          triggerSubMenuAction='click'
+          mode="inline"
+          triggerSubMenuAction="click"
           inlineIndent={20}
           subMenuOpenDelay={0.2}
           openKeys={openKeys}

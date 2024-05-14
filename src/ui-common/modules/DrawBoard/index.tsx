@@ -18,7 +18,7 @@ const DrawingBoard: React.FC<DrawingBoardProps> = ({ stroke = '#df4b26', strokeW
   const handleMouseMove = (e: any) => {
     if (!isDrawing) return;
     const newPoint = e.target.getStage().getPointerPosition();
-    let lastLine = lines[lines.length - 1];
+    const lastLine = lines[lines.length - 1];
     lastLine.points = lastLine.points.concat([newPoint.x, newPoint.y]);
     lines.splice(lines.length - 1, 1, lastLine);
     setLines(lines.concat());
@@ -29,10 +29,12 @@ const DrawingBoard: React.FC<DrawingBoardProps> = ({ stroke = '#df4b26', strokeW
   };
 
   return (
-    <div style={{
-      margin: 0,
-      padding: 0,
-    }}>
+    <div
+      style={{
+        margin: 0,
+        padding: 0,
+      }}
+    >
       <Stage
         width={window.innerWidth}
         height={600}
@@ -42,7 +44,14 @@ const DrawingBoard: React.FC<DrawingBoardProps> = ({ stroke = '#df4b26', strokeW
       >
         <Layer>
           {lines.map((line, i) => (
-            <Line key={i} points={line.points} stroke={stroke} strokeWidth={strokeWidth} tension={0.5} lineCap='round' />
+            <Line
+              key={i}
+              points={line.points}
+              stroke={stroke}
+              strokeWidth={strokeWidth}
+              tension={0.5}
+              lineCap="round"
+            />
           ))}
         </Layer>
       </Stage>

@@ -4,6 +4,7 @@ type Props = {
   sliderConfig: Settings;
   children: React.ReactNode;
 };
+
 export default function BaseSlick(props: Props) {
   const { sliderConfig, children, ...rest } = props;
   return (

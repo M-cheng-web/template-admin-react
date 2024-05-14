@@ -1,14 +1,14 @@
-import { getItem, removeItem, setItem } from '@/utils/storage';
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { create } from 'zustand';
+import { getItem, removeItem, setItem } from '@/utils/storage';
 
 // import { getItem, removeItem, setItem } from '@/utils/storage';
 // 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
 // import { persist } from 'zustand/middleware';
-import { loginApi, type LoginParams } from '@/api';
+import { loginApi } from '@/api';
 
 import type { UserInfo, UserToken } from '#/entity';
 
@@ -52,14 +52,6 @@ export const useUserPermissions = () => useUserStore((state) => state.userInfo?.
 
 export const useUserActions = () => useUserStore((state) => state.actions);
 
-/**
- * This function is a custom hook for signing in a user. It uses a mutation to
- * call the login API and handles the success and error cases by updating the
- * user token and info, showing notifications, and navigating to the home page.
- *
- * @param {LoginParams} data - The login parameters including username and password
- * @return {function} A memoized callback function for signing in
- */
 export const useSignIn = () => {
   const { t } = useTranslation();
   const { notification, message } = App.useApp();
@@ -69,18 +61,11 @@ export const useSignIn = () => {
     mutationFn: loginApi,
   });
 
-  /**
-   * An asynchronous function for signing in with the given LoginParams.
-   *
-   * @param {LoginParams} data - the parameters for signing in
-   * @return {Promise<void>}
-   */
-  const signIn = async (data: LoginParams): Promise<any> => {
+  const signIn = async (data: any): Promise<any> => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { token, ...rest } = res;
+      const { token, ...rest } = res as any;
       setUserToken({ token });
-      // 暂未提供，后续再决定权限如何处理
       setUserInfo(rest);
       notification.success({
         message: t('登录成功'),

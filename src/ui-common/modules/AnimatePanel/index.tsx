@@ -25,6 +25,13 @@ export default function Card(props: {
       xys: [0, 0, 1],
     });
 
+  function calc(x: number, y: number, rect: DOMRect | undefined) {
+    return [-(y - rect!.top - rect!.height / 2) / 150, (x - rect!.left - rect!.width / 2) / 150, 1];
+  }
+
+  const trans = (x: number, y: number, s: number) =>
+    `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = cardRef.current?.getBoundingClientRect();
     api.start({
@@ -35,12 +42,12 @@ export default function Card(props: {
   return (
     <div ref={cardRef}>
       <animated.div
-        className={'border  border-solid '}
+        className="border  border-solid "
         style={{ transform: xys.to(trans) }}
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
       >
-        <p className={'text-sm  flex justify-between border-solid'}>
+        <p className="text-sm  flex justify-between border-solid">
           {props.title} {props.right}
         </p>
         {props.children}
@@ -48,11 +55,3 @@ export default function Card(props: {
     </div>
   );
 }
-
-const calc = (x: number, y: number, rect: DOMRect | undefined) => [
-  -(y - rect!.top - rect!.height / 2) / 150,
-  (x - rect!.left - rect!.width / 2) / 150,
-  1,
-];
-
-const trans = (x: number, y: number, s: number) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;

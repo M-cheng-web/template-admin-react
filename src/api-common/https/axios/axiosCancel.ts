@@ -3,6 +3,10 @@ import { AxiosRequestConfig } from 'axios';
 // 用于存储每个请求的标识，用于取消请求
 const pendingMap = new Map<string, AbortController>();
 
+function getPendingUrl(config: AxiosRequestConfig): string {
+  return [config.method, config.url].join('&');
+}
+
 export class AxiosCanceler {
   /**
    * @description: 添加请求
@@ -35,12 +39,14 @@ export class AxiosCanceler {
       pendingMap.delete(url);
     }
   }
+
   /**
    * 重置
    */
   public reset(): void {
     pendingMap.clear();
   }
+
   /**
    * @description: 清除所有请求
    * @return void
@@ -53,7 +59,4 @@ export class AxiosCanceler {
     });
     this.reset();
   }
-}
-function getPendingUrl(config: AxiosRequestConfig): string {
-  return [config.method, config.url].join('&');
 }

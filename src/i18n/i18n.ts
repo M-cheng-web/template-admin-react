@@ -7,8 +7,6 @@ import { initReactI18next } from 'react-i18next';
 // have a look at the Quick start guide
 // for passing in lng and translations on init
 
-console.log(window.location.search);
-
 const currentLanguage = window.location.search.split('=')[1];
 console.log(`currentLanguage:${currentLanguage}`);
 

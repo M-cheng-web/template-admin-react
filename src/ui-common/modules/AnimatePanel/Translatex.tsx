@@ -27,7 +27,11 @@ export default function Translatex(props: TranslateProps) {
   const animateStyles = useSpring({
     opacity: animate ? 1 : 0,
     transform: animate
-      ? `${direction === 'left' ? 'translateX(0px) scale(1) rotateY(0deg)' : 'translateY(0px) scale(1) rotateY(0deg)'}`
+      ? `${
+          direction === 'left'
+            ? 'translateX(0px) scale(1) rotateY(0deg)'
+            : 'translateY(0px) scale(1) rotateY(0deg)'
+        }`
       : `${
           direction === 'left'
             ? 'translateX(80px) scale(1) rotateY(10deg)'

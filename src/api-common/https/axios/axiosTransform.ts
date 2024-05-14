@@ -1,4 +1,9 @@
-import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, AxiosInstance } from 'axios';
+import type {
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+  AxiosInstance,
+} from 'axios';
 import { RequestOptions, Result } from '../types/axios';
 
 export interface CreateAxiosOptions extends AxiosRequestConfig {
@@ -32,10 +37,15 @@ export abstract class AxiosTransform {
    * @description: 处理响应数据
    */
   transformResponseHook?: (res: AxiosResponse<Result>, options: RequestOptions) => any;
+
   /**
    * @description: 请求之前的拦截器
    */
-  requestInterceptors?: (config: InternalAxiosRequestConfig, options: CreateAxiosOptions) => InternalAxiosRequestConfig;
+  requestInterceptors?: (
+    config: InternalAxiosRequestConfig,
+    options: CreateAxiosOptions,
+  ) => InternalAxiosRequestConfig;
+
   /**
    * @description: 请求之后的拦截器错误处理
    */

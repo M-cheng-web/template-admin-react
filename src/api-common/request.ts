@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { notification } from 'antd';
 import request, { type RequestOptionsInit, extend } from 'umi-request';
 
@@ -54,12 +53,12 @@ GRequest.interceptors.response.use(async (response, options) => {
       });
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       isRefreshingToken = false;
-      const response = GRequest(options.url, options);
+      const responseSelf = GRequest(options.url, options);
 
       // 重新登录后，将队列中的请求重新发出
       requestQueue.forEach((cb) => cb.resolve(GRequest(cb.url, cb.options)));
 
-      return response;
+      return responseSelf;
     }
     // 正在刷新token，将返回一个未执行resolve的promise
     return new Promise((resolve, reject) => {

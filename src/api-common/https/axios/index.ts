@@ -1,15 +1,15 @@
 import { clone, isString } from 'lodash-es';
+import axios from 'axios';
+import type { AxiosInstance, AxiosResponse } from 'axios';
 import { deepMerge } from '@/utils/index';
 import { formatRequestDate, setObjToUrlParams, joinTimestamp } from '@/utils/helper/httpHelper';
 import { getItem } from '@/utils/storage';
 
 import { ContentTypeEnum, RequestEnum, ResultEnum, StorageEnum } from '../enums/httpEnum';
 import { GAxios } from './Axios';
-import axios from 'axios';
 
 import type { RequestOptions, Result } from '../types/axios';
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform';
-import type { AxiosInstance, AxiosResponse } from 'axios';
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -74,8 +74,8 @@ const transform: AxiosTransform = {
       if (err?.includes('Network Error')) {
         errMessage = '网络异常,请检查您的网络连接是否正常';
       }
-    } catch (error) {
-      throw new Error(error as unknown as string);
+    } catch (_error) {
+      throw new Error(_error as unknown as string);
     }
     // 根据错误状态码处理, 后面抽离出去
     switch (response?.status) {
@@ -121,32 +121,30 @@ const transform: AxiosTransform = {
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false));
       } else {
         // 兼容restful风格
-        config.url = config.url + params + `${joinTimestamp(joinTime, true)}`;
+        config.url = `${config.url + params}${joinTimestamp(joinTime, true)}`;
         config.params = undefined;
+      }
+    } else if (!isString(params)) {
+      formatDate && formatRequestDate(params);
+      if (
+        Reflect.has(config, 'data') &&
+        config.data &&
+        (Object.keys(config.data).length > 0 || config.data instanceof FormData)
+      ) {
+        config.data = data;
+        config.params = params;
+      } else {
+        // 非GET请求如果没有提供data，则将params视为data
+        config.data = params;
+        config.params = undefined;
+      }
+      if (joinParamsToUrl) {
+        config.url = setObjToUrlParams(config.url as string, { ...config.params, ...config.data });
       }
     } else {
-      if (!isString(params)) {
-        formatDate && formatRequestDate(params);
-        if (
-          Reflect.has(config, 'data') &&
-          config.data &&
-          (Object.keys(config.data).length > 0 || config.data instanceof FormData)
-        ) {
-          config.data = data;
-          config.params = params;
-        } else {
-          // 非GET请求如果没有提供data，则将params视为data
-          config.data = params;
-          config.params = undefined;
-        }
-        if (joinParamsToUrl) {
-          config.url = setObjToUrlParams(config.url as string, Object.assign({}, config.params, config.data));
-        }
-      } else {
-        // 兼容restful风格
-        config.url = config.url + params;
-        config.params = undefined;
-      }
+      // 兼容restful风格
+      config.url += params;
+      config.params = undefined;
     }
 
     return config;

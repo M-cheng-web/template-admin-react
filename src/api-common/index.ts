@@ -4,5 +4,3 @@ import request from 'umi-request';
 export * from './https/axios';
 
 export default request;
-
-

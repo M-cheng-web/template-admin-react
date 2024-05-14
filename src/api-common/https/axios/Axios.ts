@@ -1,14 +1,20 @@
 import axios from 'axios';
 import { cloneDeep } from 'lodash-es';
-import { isFunction } from '@/utils/is';
 import qs from 'qs';
+import type {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
+import { isFunction } from '@/utils/is';
 
 import { ContentTypeEnum, RequestEnum } from '../enums/httpEnum';
 import { AxiosCanceler } from './axiosCancel';
 
 import type { RequestOptions, Result, UploadFileParams } from '../types/axios';
 import type { CreateAxiosOptions } from './axiosTransform';
-import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export * from './axiosTransform';
 
@@ -74,14 +80,20 @@ export class GAxios {
     if (!transform) {
       return;
     }
-    const { requestInterceptors, requestInterceptorsCatch, responseInterceptors, responseInterceptorsCatch } = transform;
+    const {
+      requestInterceptors,
+      requestInterceptorsCatch,
+      responseInterceptors,
+      responseInterceptorsCatch,
+    } = transform;
 
     const axiosCanceler = new AxiosCanceler();
 
     // 请求拦截器配置处理
     this.axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
       // 如果取消重复请求打开，则禁止取消重复请求
-      const requestOptions = (config as unknown as any).requestOptions ?? this.options.requestOptions;
+      const requestOptions =
+        (config as unknown as any).requestOptions ?? this.options.requestOptions;
       const ignoreCancelToken = requestOptions?.ignoreCancelToken ?? true;
 
       !ignoreCancelToken && axiosCanceler.addPending(config);
@@ -93,9 +105,9 @@ export class GAxios {
     }, undefined);
 
     // 请求拦截器错误捕获
-    requestInterceptorsCatch
-      && isFunction(requestInterceptorsCatch)
-      && this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch);
+    requestInterceptorsCatch &&
+      isFunction(requestInterceptorsCatch) &&
+      this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch);
 
     // 响应拦截器处理
     this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {
@@ -107,9 +119,11 @@ export class GAxios {
     }, undefined);
 
     // 响应拦截器错误捕获
-    responseInterceptorsCatch
-      && isFunction(responseInterceptorsCatch)
-      && this.axiosInstance.interceptors.response.use(undefined, (error) => responseInterceptorsCatch(axiosInstance, error));
+    responseInterceptorsCatch &&
+      isFunction(responseInterceptorsCatch) &&
+      this.axiosInstance.interceptors.response.use(undefined, (error) =>
+        responseInterceptorsCatch(axiosInstance, error),
+      );
   }
 
   /**
@@ -145,7 +159,6 @@ export class GAxios {
       data: formData,
       headers: {
         'Content-type': ContentTypeEnum.FORM_DATA,
-        // @ts-ignore
         ignoreCancelToken: true,
       },
     });
@@ -157,9 +170,9 @@ export class GAxios {
     const contentType = headers?.['Content-Type'] || headers?.['content-type'];
 
     if (
-      contentType !== ContentTypeEnum.FORM_URLENCODED
-      || !Reflect.has(config, 'data')
-      || config.method?.toUpperCase() === RequestEnum.GET
+      contentType !== ContentTypeEnum.FORM_URLENCODED ||
+      !Reflect.has(config, 'data') ||
+      config.method?.toUpperCase() === RequestEnum.GET
     ) {
       return config;
     }

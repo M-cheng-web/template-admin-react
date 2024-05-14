@@ -1,6 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Button, Col, Divider, Row, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+import type { FC } from 'react';
 import { AnimatePanel } from '@/ui-common';
 
 import SvgIcon from '@/components/SvgIcon';
@@ -11,8 +11,6 @@ import JuejinTable from './components/juejinTable';
 import SlickBox from './components/SlickBox';
 import useStyles from './index.style';
 
-import type { FC } from 'react';
-
 const { Title, Text } = Typography;
 const HomePage: FC = () => {
   const { styles } = useStyles();
@@ -20,8 +18,8 @@ const HomePage: FC = () => {
   return (
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>
-        <Col className='gutter-row' span={16}>
-          <div className='user-info g-paper'>
+        <Col className="gutter-row" span={16}>
+          <div className="user-info g-paper">
             <AnimatePanel
               panelConfig={{
                 friction: 2,
@@ -35,17 +33,17 @@ const HomePage: FC = () => {
               >
                 <Col span={12}>
                   <Title level={3}>{t('欢迎回来 👋 Gbeata')}</Title>
-                  <Text type='secondary'>
+                  <Text type="secondary">
                     {t(
                       '如果你正在使用或者将要使用这个系统，希望你在探索的过程中学有所得，如果正巧你遇到了一个问题，请告诉我们，我们会尽快处理！',
                     )}
                   </Text>
                   <Divider dashed />
-                  <Button type='primary'>{t('现在出发！')}</Button>
+                  <Button type="primary">{t('现在出发！')}</Button>
                 </Col>
                 <Col span={12}>
                   <SvgIcon
-                    name='homeinfo'
+                    name="homeinfo"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -56,18 +54,16 @@ const HomePage: FC = () => {
             </AnimatePanel>
           </div>
         </Col>
-        <Col className='gutter-row' span={8}>
-          <div className='slick g-paper'>
+        <Col className="gutter-row" span={8}>
+          <div className="slick g-paper">
             <SlickBox />
           </div>
         </Col>
         <AnalyzeCard />
         <Col span={12}>
-          <UserCard></UserCard>
+          <UserCard />
         </Col>
-        <Col span={12}>
-          3D空槽
-        </Col>
+        <Col span={12}>3D空槽</Col>
         <Col span={24}>
           <JuejinTable />
           {/* <Text>

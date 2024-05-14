@@ -14,15 +14,25 @@ export type SignRes = UserToken & {
 };
 
 // User login api
-export const loginApi = (data: LoginParams): Promise<SignRes> => {
+export const loginApi = (data: LoginParams): Promise<any> => {
   // return service({
   //   url: '/login',
   //   method: 'post',
   //   data,
   // });
-  return defHttp.post<SignRes>({
-    url: '/login',
-    data,
+  // return defHttp.post<SignRes>({
+  //   url: '/login',
+  //   data,
+  // });
+  return new Promise((resolve) => {
+    const data2 = {
+      token: 'xxssssyyyqqzzz-vvaaa',
+      userage: 12,
+      ...data,
+    };
+    setTimeout(() => {
+      resolve(data2);
+    }, 1000);
   });
 };
 
@@ -62,7 +72,7 @@ export function getTableList(params: any) {
 }
 
 // juejin api
-export function getJueJinList(params) {
+export function getJueJinList(params: any) {
   // return service({
   //   url: 'article/queryList',
   //   method: 'post',
