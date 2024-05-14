@@ -66,6 +66,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
+        '#': resolve(__dirname, './types'),
       },
     },
   };
