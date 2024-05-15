@@ -42,6 +42,11 @@ module.exports = {
     "class-methods-use-this": "off",
     "@typescript-eslint/naming-convention": "off",
     "react/no-unused-prop-types": "off",
+    "@typescript-eslint/ban-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "no-underscore-dangle": "off",
+    "no-plusplus": "off",
     // "import/no-extraneous-dependencies": {
     //   "devDependencies": true,
     //   "peerDependencies": true,

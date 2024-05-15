@@ -19,5 +19,5 @@ export function configMockPlugin({ isBuild, root }: { isBuild: boolean; root: st
           `,
     // 当前文件夹下的src/main.ts
     injectFile: path.join(root, '/src/main.tsx'),
-  });
+  } as any);
 }

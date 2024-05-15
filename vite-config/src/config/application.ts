@@ -56,7 +56,8 @@ function defineApplicationConfig(options: DefineOptions = {}) {
         target: 'es2015',
         cssTarget: 'chrome80',
         minify: 'esbuild',
-        outDir: `${TURBO_INVOCATION_DIR}/${defineData?.pkg?.name}` ?? 'dist',
+        outDir: './dist',
+        // outDir: `${TURBO_INVOCATION_DIR}/${defineData?.pkg?.name}` ?? 'dist',
         rollupOptions: {
           output: {
             entryFileNames: `assets/entry/[name]-[hash].${timestamp}.js`,

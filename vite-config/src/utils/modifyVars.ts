@@ -9,9 +9,9 @@ require('@ant-design/compatible/lib');
 const { defaultAlgorithm, defaultSeed } = theme;
 const primaryColor = '#0960bd';
 
-function generateAntColors(color: string, theme: 'default' | 'dark' = 'default') {
+function generateAntColors(color: string, _theme: 'default' | 'dark' = 'default') {
   return generate(color, {
-    theme,
+    theme: _theme,
   });
 }
 

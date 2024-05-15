@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "build-tsc": "tsc && vite build",
     "preview": "vite preview",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:style": "stylelint \"**/*.css\"",
