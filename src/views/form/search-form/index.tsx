@@ -4,11 +4,10 @@ import { t } from 'i18next';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import type { FC } from 'react';
 import { PageWrapper } from '@/components/Page';
 
 import { FORM_SEARCH_COMPO } from '@/settings/websiteSetting';
-
-import type { FC } from 'react';
 
 const SearchForm: FC = () => {
   const [width, setWidth] = useState(100);
@@ -104,16 +103,14 @@ const SearchForm: FC = () => {
       <Row gutter={[12, 12]}>
         <Col span={24}>
           <Card title={t('基础用法')}>
-            <Alert message={t('拖拽我，看看我的变化：')} type='info' showIcon />
+            <Alert message={t('拖拽我，看看我的变化：')} type="info" showIcon />
             <Slider defaultValue={width} min={30} max={100} onChange={setWidth} />
-            <div style={{ width: `${width}%` }}>
-              {/* <GSearch fields={fields} /> */}
-            </div>
+            <div style={{ width: `${width}%` }}>{/* <GSearch fields={fields} /> */}</div>
           </Card>
         </Col>
         <Col span={24}>
           <Card title={t('超过一行就折叠')}>
-            <Alert message={t('设置openRow，控制超过几行就折叠：')} type='info' showIcon />
+            <Alert message={t('设置openRow，控制超过几行就折叠：')} type="info" showIcon />
             <Slider defaultValue={width} min={30} max={100} onChange={setWidth} />
             <div style={{ width: `${width}%` }}>
               {/* <GSearch fields={fields} openRow={1} /> */}
@@ -122,7 +119,7 @@ const SearchForm: FC = () => {
         </Col>
         <Col span={24}>
           <Card title={t('默认展开全部')}>
-            <Alert message={t('设置defaultOpen')} type='info' showIcon />
+            <Alert message={t('设置defaultOpen')} type="info" showIcon />
             <Slider defaultValue={width} min={30} max={100} onChange={setWidth} />
             <div style={{ width: `${width}%` }}>
               {/* <GSearch fields={fields} defaultOpen /> */}
@@ -132,8 +129,10 @@ const SearchForm: FC = () => {
         <Col span={24}>
           <Card title={t('平铺展示')}>
             <Alert
-              message={t('inline 状态下，所有的查询项的 title 不再有效，且会变成 placeholder，不断地平铺下去。')}
-              type='info'
+              message={t(
+                'inline 状态下，所有的查询项的 title 不再有效，且会变成 placeholder，不断地平铺下去。',
+              )}
+              type="info"
               showIcon
             />
 
@@ -145,7 +144,11 @@ const SearchForm: FC = () => {
         </Col>
         <Col span={24}>
           <Card title={t('跨格')}>
-            <Alert message={t('GSearch 的 span 值是无效的，请使用 grid 来指定占格')} type='info' showIcon />
+            <Alert
+              message={t('GSearch 的 span 值是无效的，请使用 grid 来指定占格')}
+              type="info"
+              showIcon
+            />
             <Slider defaultValue={width} min={30} max={100} onChange={setWidth} />
             <div style={{ width: `${width}%` }}>
               {/* <GSearch

@@ -18,16 +18,15 @@ import {
 } from 'antd';
 import { t } from 'i18next';
 import { type FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
+import type { CascaderProps, TreeSelectProps } from 'antd';
+import type { Rule } from 'antd/es/form';
 import { PageWrapper } from '@/components/Page';
 
 import { FORM_COMPO } from '@/settings/websiteSetting';
 
 import { cascaderData, checkboxData, cityData, provinceData, radioData, treeData } from './data';
-
-import type { CascaderProps, TreeSelectProps } from 'antd';
-import type { Rule } from 'antd/es/form';
 
 const BasicForm: FC = () => {
   const [form] = Form.useForm();
@@ -130,7 +129,13 @@ const BasicForm: FC = () => {
 
     return new Promise((resolve) => {
       setTimeout(() => {
-        setTreeLazyData(treeLazyData?.concat([genTreeNode(id, false), genTreeNode(id, true), genTreeNode(id, true)]));
+        setTreeLazyData(
+          treeLazyData?.concat([
+            genTreeNode(id, false),
+            genTreeNode(id, true),
+            genTreeNode(id, true),
+          ]),
+        );
         resolve(undefined);
       }, 500);
     });
@@ -155,58 +160,65 @@ const BasicForm: FC = () => {
           style={{ width: '40%', margin: '0 auto' }}
           onFinish={onFinish}
         >
-          <Form.Item label={t('输入框(长度限制):')} name='inputLimit' rules={formRules.inputLimit}>
+          <Form.Item label={t('输入框(长度限制):')} name="inputLimit" rules={formRules.inputLimit}>
             <Input showCount maxLength={20} placeholder={t('请输入内容')} />
           </Form.Item>
-          <Form.Item label={t('输入框(纯数字):')} name='inputNum' rules={formRules.inputNum}>
+          <Form.Item label={t('输入框(纯数字):')} name="inputNum" rules={formRules.inputNum}>
             <InputNumber style={{ width: '100%' }} placeholder={t('请输入数字')} />
           </Form.Item>
-          <Form.Item label={t('输入框(密码隐藏):')} name='password' rules={formRules.password}>
-            <Input.Password maxLength={16} autoComplete='off' placeholder={t('请输入密码')} />
+          <Form.Item label={t('输入框(密码隐藏):')} name="password" rules={formRules.password}>
+            <Input.Password maxLength={16} autoComplete="off" placeholder={t('请输入密码')} />
           </Form.Item>
           <Form.Item label={t('select选择器(联动):')}>
             <Row gutter={12}>
               <Col span={12}>
-                <Form.Item name='selectProvince'>
-                  <Select options={provinceData.map((pro: any) => ({ value: pro }))} onChange={handleProvinceChange} />
+                <Form.Item name="selectProvince">
+                  <Select
+                    options={provinceData.map((pro: any) => ({ value: pro }))}
+                    onChange={handleProvinceChange}
+                  />
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item name='selectCity'>
-                  <Select options={cityData[formState.selectProvince].map((city: any) => ({ value: city }))} />
+                <Form.Item name="selectCity">
+                  <Select
+                    options={cityData[formState.selectProvince].map((city: any) => ({
+                      value: city,
+                    }))}
+                  />
                 </Form.Item>
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label={t('日期和时间选择器:')} name='dateVal'>
+          <Form.Item label={t('日期和时间选择器:')} name="dateVal">
             <Row gutter={12}>
               <Col span={12}>
                 <DatePicker placeholder={t('选择日期')} style={{ width: '100%' }} />
               </Col>
               <Col span={12}>
-                <Form.Item name='timeVal'>
+                <Form.Item name="timeVal">
                   <TimePicker placeholder={t('选择时间')} style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label={t('switch开关(显示隐藏):')} name='switchVal' valuePropName='checked'>
+          <Form.Item label={t('switch开关(显示隐藏):')} name="switchVal" valuePropName="checked">
             <Switch />
           </Form.Item>
           {!switchVal ? null : (
             <>
-              <Form.Item label={t('滑块条(初始值):')} name='sliderVal'>
+              <Form.Item label={t('滑块条(初始值):')} name="sliderVal">
                 <Slider />
               </Form.Item>
               <Form.Item label={t('级联选择器:')}>
                 <Row gutter={12}>
                   <Col span={12}>
-                    <Form.Item name='cascaderVal'>
+                    <Form.Item name="cascaderVal">
                       <Cascader options={cascaderData} placeholder={t('请选择')} />
                     </Form.Item>
                   </Col>
                   <Col span={12}>
-                    <Form.Item name='cascaderLazy'>
+                    <Form.Item name="cascaderLazy">
                       <Cascader
                         options={cascaderLazyData}
                         loadData={loadCascaderLazy}
@@ -217,7 +229,7 @@ const BasicForm: FC = () => {
                   </Col>
                 </Row>
               </Form.Item>
-              <Form.Item label={t('树选择器(可勾选):')} name='treeVal'>
+              <Form.Item label={t('树选择器(可勾选):')} name="treeVal">
                 <Row gutter={12}>
                   <Col span={12}>
                     <TreeSelect
@@ -229,7 +241,7 @@ const BasicForm: FC = () => {
                     />
                   </Col>
                   <Col span={12}>
-                    <Form.Item name='treeLazy'>
+                    <Form.Item name="treeLazy">
                       <TreeSelect
                         treeDataSimpleMode
                         treeData={treeLazyData}
@@ -240,20 +252,20 @@ const BasicForm: FC = () => {
                   </Col>
                 </Row>
               </Form.Item>
-              <Form.Item label={t('单选框(带禁止):')} name='radioVal'>
+              <Form.Item label={t('单选框(带禁止):')} name="radioVal">
                 <Radio.Group options={radioData} />
               </Form.Item>
-              <Form.Item label={t('多选框(带禁止):')} name='checkboxVal'>
+              <Form.Item label={t('多选框(带禁止):')} name="checkboxVal">
                 <Checkbox.Group options={checkboxData} />
               </Form.Item>
-              <Form.Item label={t('文本域(长度限制):')} name='textareaVal'>
+              <Form.Item label={t('文本域(长度限制):')} name="textareaVal">
                 <Input.TextArea maxLength={50} rows={3} placeholder={t('请输入内容')} />
               </Form.Item>
             </>
           )}
 
           <Form.Item wrapperCol={{ span: 12, offset: 12 }}>
-            <Button type='primary' htmlType='submit'>
+            <Button type="primary" htmlType="submit">
               {t('提交')}
             </Button>
             <Button style={{ marginLeft: '12px' }} onClick={resetForm}>

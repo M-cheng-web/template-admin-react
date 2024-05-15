@@ -41,11 +41,13 @@ const UserCard: React.FC<UserCardProp> = ({
 }) => {
   const [loading, setLoading] = React.useState(true);
   const { styles } = useStyles();
+
   React.useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
   }, []);
+
   return (
     <>
       {loading && (
@@ -78,7 +80,7 @@ const UserCard: React.FC<UserCardProp> = ({
           <div className="user_info">
             <SvgIcon className="avatar-svg" name="wave" />
             <div className="avatar">
-              <img src={avatar} />
+              <img src={avatar} alt="" />
             </div>
             <div className="info">
               <Title style={{ margin: 0 }} level={5}>

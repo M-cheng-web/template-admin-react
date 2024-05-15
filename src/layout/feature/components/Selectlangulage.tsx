@@ -17,13 +17,16 @@ const Selectlangulage = () => {
     },
   ];
   return (
-    <Dropdown menu={{ items: languages, onClick: ({ key }) => i18n.changeLanguage(key) }} trigger={['click']}>
+    <Dropdown
+      menu={{ items: languages, onClick: ({ key }) => i18n.changeLanguage(key) }}
+      trigger={['click']}
+    >
       <Button
-        shape='circle'
-        size='small'
+        shape="circle"
+        size="small"
         icon={
-          <span className='anticon'>
-            <Icon icon='ant-design:global-outlined'></Icon>
+          <span className="anticon">
+            <Icon icon="ant-design:global-outlined" />
           </span>
         }
       />

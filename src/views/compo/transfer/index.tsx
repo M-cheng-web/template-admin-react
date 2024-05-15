@@ -3,13 +3,12 @@ import { t } from 'i18next';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import type { DataNode } from 'antd/es/tree';
 import { PageWrapper } from '@/components/Page';
 
 import { TRANSFER_COMPO } from '@/settings/websiteSetting';
 
 import { mockData, transferDataSource, treeData } from './data';
-
-import type { DataNode } from 'antd/es/tree';
 
 const TransferPage: React.FC = () => {
   const [targetKeys, setTargetKeys] = useState(['1', '5']);
@@ -24,9 +23,11 @@ const TransferPage: React.FC = () => {
     setSelectedKeys([...sourceSelectedKeys, ...targetSelectedKeys]);
   };
 
-  const isChecked = (selectedKeys: (string | number)[], eventKey: string | number) => selectedKeys.includes(eventKey);
+  const isChecked = (_selectedKeys: (string | number)[], eventKey: string | number) =>
+    _selectedKeys.includes(eventKey);
 
-  const generateTree = (treeNodes: DataNode[] = [], checkedKeys: string[] = []): DataNode[] => treeNodes.map(({ children, ...props }) => ({
+  const generateTree = (treeNodes: DataNode[] = [], checkedKeys: string[] = []): DataNode[] =>
+    treeNodes.map(({ children, ...props }) => ({
       ...props,
       disabled: checkedKeys.includes(props.key as string),
       children: generateTree(children, checkedKeys),
@@ -36,7 +37,11 @@ const TransferPage: React.FC = () => {
     setTreeTargetKeys(nextTargetKeys);
   };
 
-  const getRowSelection = ({ selectedKeys, onItemSelectAll, onItemSelect }: Record<string, any>) => ({
+  const getRowSelection = ({
+    _selectedKeys,
+    onItemSelectAll,
+    onItemSelect,
+  }: Record<string, any>) => ({
     onSelectAll(selected: boolean, selectedRows: Record<string, string | boolean>[]) {
       const treeSelectedKeys = selectedRows.filter((item) => !item.disabled).map(({ key }) => key);
       onItemSelectAll(treeSelectedKeys, selected);
@@ -44,7 +49,7 @@ const TransferPage: React.FC = () => {
     onSelect({ key }: Record<string, string>, selected: boolean) {
       onItemSelect(key, selected);
     },
-    selectedRowKeys: selectedKeys,
+    selectedRowKeys: _selectedKeys,
   });
 
   return (
@@ -74,9 +79,9 @@ const TransferPage: React.FC = () => {
               listStyle={{ width: '230px', height: '360px' }}
               onChange={handleChange}
             >
-              {({ direction, selectedKeys, onItemSelect }) => {
+              {({ direction, selectedKeys: selectedKeys2, onItemSelect }) => {
                 if (direction === 'left') {
-                  const treeCheckedKeys = [...selectedKeys, ...treeTargetKeys];
+                  const treeCheckedKeys = [...selectedKeys2, ...treeTargetKeys];
                   return (
                     <Tree
                       blockNode
@@ -107,16 +112,16 @@ const TransferPage: React.FC = () => {
               locale={{ itemsUnit: t('项') }}
               onChange={onChange}
             >
-              {({ filteredItems, selectedKeys, onItemSelectAll, onItemSelect }) => (
+              {({ filteredItems, selectedKeys: selectedKeys2, onItemSelectAll, onItemSelect }) => (
                 <Table
-                  rowSelection={getRowSelection({ selectedKeys, onItemSelectAll, onItemSelect })}
+                  rowSelection={getRowSelection({ selectedKeys2, onItemSelectAll, onItemSelect })}
                   columns={[{ dataIndex: 'title', title: 'Name' }]}
                   dataSource={filteredItems}
-                  size='small'
+                  size="small"
                   pagination={false}
                   onRow={({ key }) => ({
                     onClick: () => {
-                      onItemSelect(key, !selectedKeys.includes(key));
+                      onItemSelect(key, !selectedKeys2.includes(key));
                     },
                   })}
                 />

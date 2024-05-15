@@ -2,7 +2,7 @@ import { Card, Col, Row } from 'antd';
 import { t } from 'i18next';
 import { cloneDeep } from 'lodash-es';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { ReactSortable } from 'react-sortablejs';
 
 import { PageWrapper } from '@/components/Page';
@@ -27,7 +27,10 @@ const DragList: React.FC = () => {
     { name: 'TypeScript', id: 7 },
   ]);
 
-  const [dragLogs, setDragLogs] = useState<string[]>([t('列表1 => 列表2, 6 => 1'), t('列表1 => 列表2, 6 => 2')]);
+  const [dragLogs, setDragLogs] = useState<string[]>([
+    t('列表1 => 列表2, 6 => 1'),
+    t('列表1 => 列表2, 6 => 2'),
+  ]);
 
   const handleDrop = (event: any) => {
     const listMap = new Map([
@@ -52,12 +55,12 @@ const DragList: React.FC = () => {
               list={listOne}
               setList={setListOne}
               onEnd={handleDrop}
-              group='list'
-              className='list1'
+              group="list"
+              className="list1"
               style={{ height: '100%' }}
             >
               {listOne.map((item) => (
-                <Card key={item.id} hoverable size='small' style={{ marginBottom: '12px' }}>
+                <Card key={item.id} hoverable size="small" style={{ marginBottom: '12px' }}>
                   {item.name}
                 </Card>
               ))}
@@ -70,12 +73,12 @@ const DragList: React.FC = () => {
               list={listTwo}
               setList={setListTwo}
               onEnd={handleDrop}
-              group='list'
-              className='list2'
+              group="list"
+              className="list2"
               style={{ height: '100%' }}
             >
               {listTwo.map((item) => (
-                <Card key={item.id} hoverable size='small' style={{ marginBottom: '12px' }}>
+                <Card key={item.id} hoverable size="small" style={{ marginBottom: '12px' }}>
                   {item.name}
                 </Card>
               ))}

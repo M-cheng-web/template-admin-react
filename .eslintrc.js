@@ -47,6 +47,12 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": "off",
     "no-underscore-dangle": "off",
     "no-plusplus": "off",
+    "no-console": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
+    "react/jsx-no-bind": "off",
+    "react/prop-types": "off",
+    "consistent-return": "off",
     // "import/no-extraneous-dependencies": {
     //   "devDependencies": true,
     //   "peerDependencies": true,

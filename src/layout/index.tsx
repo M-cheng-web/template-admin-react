@@ -22,7 +22,13 @@ export const BasicLayout = (props: any) => {
   const { styles } = useStyles();
   return (
     <Layout className={styles.layout_wrapper}>
-      <Sider width={240} trigger={null} theme='light' collapsed={unfold} className='ant-layout-sider'>
+      <Sider
+        width={240}
+        trigger={null}
+        theme="light"
+        collapsed={unfold}
+        className="ant-layout-sider"
+      >
         <AppLogo />
         <LayoutMenu />
       </Sider>

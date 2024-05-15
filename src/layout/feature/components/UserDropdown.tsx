@@ -3,13 +3,12 @@ import { Dropdown, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import type { MenuProps } from 'antd';
 import { useMessage } from '@/hooks/web/useMessage';
 
 import { logoutApi } from '@/api';
 import headerImg from '@/assets/images/avatar.jpeg';
 import { useUserActions, useUserToken } from '@/stores/modules/userStore';
-
-import type { MenuProps } from 'antd';
 
 export default function UserDropdown() {
   const { createConfirm, contextHolder, createMessage } = useMessage();
@@ -17,15 +16,15 @@ export default function UserDropdown() {
   const { t } = useTranslation();
   const { token } = useUserToken();
   const items: MenuProps['items'] = [
-    {
-      key: 'lock',
-      label: (
-        <Space size={4}>
-          <LockOutlined rev={undefined} />
-          <span>{t('锁定屏幕')}</span>
-        </Space>
-      ),
-    },
+    // {
+    //   key: 'lock',
+    //   label: (
+    //     <Space size={4}>
+    //       <LockOutlined rev={undefined} />
+    //       <span>{t('锁定屏幕')}</span>
+    //     </Space>
+    //   ),
+    // },
     {
       key: 'logout',
       label: (
@@ -79,8 +78,8 @@ export default function UserDropdown() {
   return (
     <>
       {contextHolder}
-      <Dropdown menu={{ items, onClick }} placement='bottomRight' arrow>
-        <span className='flex-center' style={{ cursor: 'pointer' }}>
+      <Dropdown menu={{ items, onClick }} placement="bottomRight" arrow>
+        <span className="flex-center" style={{ cursor: 'pointer' }}>
           <img
             src={headerImg}
             style={{
@@ -88,7 +87,7 @@ export default function UserDropdown() {
               height: '24px',
               borderRadius: '50%',
             }}
-            alt=''
+            alt=""
           />
         </span>
       </Dropdown>

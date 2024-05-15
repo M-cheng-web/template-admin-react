@@ -48,13 +48,13 @@ const CountUpPage: React.FC = () => {
                 fontSize: '40px',
                 color: '#e65d6e',
               }}
-              className='flex-center'
+              className="flex-center"
             />
           </Card>
         </Col>
         <Col span={12}>
           <Card title={t('自定义配置')} bordered={false} bodyStyle={{ height: '300px' }}>
-            <div className='flex-center' style={{ marginBottom: '30px' }}>
+            <div className="flex-center" style={{ marginBottom: '30px' }}>
               <span
                 ref={countUpRef}
                 style={{
@@ -66,38 +66,38 @@ const CountUpPage: React.FC = () => {
             <Form
               form={form}
               initialValues={{ ...formData }}
-              layout='inline'
-              labelAlign='left'
+              layout="inline"
+              labelAlign="left"
               labelCol={{ style: { width: '80px', marginBottom: '12px' } }}
               onValuesChange={onValuesChange}
             >
-              <Form.Item label='startVal:' name='start'>
+              <Form.Item label="startVal:" name="start">
                 <InputNumber min={0} max={10000} style={{ width: '100px' }} />
               </Form.Item>
-              <Form.Item label='endVal:' name='end'>
+              <Form.Item label="endVal:" name="end">
                 <InputNumber min={0} max={10000} style={{ width: '100px' }} />
               </Form.Item>
-              <Form.Item label='duration:' name='duration'>
+              <Form.Item label="duration:" name="duration">
                 <InputNumber min={1} max={100} style={{ width: '100px' }} />
               </Form.Item>
-              <Form.Item label='decimals:' name='decimals'>
+              <Form.Item label="decimals:" name="decimals">
                 <InputNumber min={0} max={100} style={{ width: '100px' }} />
               </Form.Item>
-              <Form.Item label='separator:' name='separator'>
+              <Form.Item label="separator:" name="separator">
                 <Input style={{ width: '100px' }} />
               </Form.Item>
-              <Form.Item label='prefix:' name='prefix'>
+              <Form.Item label="prefix:" name="prefix">
                 <Input style={{ width: '100px' }} />
               </Form.Item>
-              <Form.Item label='suffix:' name='suffix'>
+              <Form.Item label="suffix:" name="suffix">
                 <Input style={{ width: '100px' }} />
               </Form.Item>
               <Form.Item>
                 <Space>
-                  <Button type='primary' onClick={start}>
+                  <Button type="primary" onClick={start}>
                     {t('开始')}
                   </Button>
-                  <Button type='primary' danger onClick={reset}>
+                  <Button type="primary" danger onClick={reset}>
                     {t('重置')}
                   </Button>
                 </Space>
@@ -116,7 +116,7 @@ const CountUpPage: React.FC = () => {
                 fontSize: '40px',
                 color: '#30b08f',
               }}
-              className='flex-center'
+              className="flex-center"
             />
           </Card>
         </Col>

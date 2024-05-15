@@ -7,10 +7,10 @@ import { PageWrapper } from '@/components/Page';
 import { REACT_RND_PLUGIN } from '@/settings/websiteSetting';
 
 interface configState {
-  x: number
-  y: number
-  width: number
-  height: number
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
 const DragResize: React.FC = () => {
@@ -42,7 +42,7 @@ const DragResize: React.FC = () => {
   return (
     <PageWrapper plugin={REACT_RND_PLUGIN}>
       <Card bordered={false} bodyStyle={{ padding: 0 }}>
-        <div ref={rectWrapper} className='rect-wrapper' style={{ width: '100%', height: '500px' }}>
+        <div ref={rectWrapper} className="rect-wrapper" style={{ width: '100%', height: '500px' }}>
           <Rnd
             size={{ width: config.width, height: config.height }}
             position={{ x: config.x, y: config.y }}
@@ -50,10 +50,10 @@ const DragResize: React.FC = () => {
             minHeight={100}
             onDragStop={handleDragStop}
             onResize={handleResize}
-            bounds='.rect-wrapper'
+            bounds=".rect-wrapper"
             style={{ background: '#1890ff' }}
           >
-            <div className='flex-center' style={{ height: '100%' }}>
+            <div className="flex-center" style={{ height: '100%' }}>
               <div style={{ width: '90px', color: '#fff' }}>
                 <p>x: {config.x}</p>
                 <p>y: {config.y}</p>

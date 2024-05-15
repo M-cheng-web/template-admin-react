@@ -21,7 +21,7 @@ const GbeataForm = () => {
   };
 
   return (
-    <button style={{ marginLeft: 120 }} type='primary' htmlType='submit'>
+    <button style={{ marginLeft: 120 }} type="primary" htmlType="submit">
       {t('提交')}
     </button>
     // <GButton style={{ marginLeft: 120 }} type='primary' htmlType='submit'>

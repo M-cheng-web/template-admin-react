@@ -84,13 +84,34 @@ export function getJueJinList(params: any) {
   });
 }
 
-export function getUsersList<T>() {
+export function getUsersList() {
   // return service({
   //   url: 'user/getUserList',
   //   method: 'get',
   // }) as unknown as Promise<T>;
 
-  return defHttp.get<T>({
-    url: '/user/getUserList',
+  // return defHttp.get<T>({
+  //   url: '/user/getUserList',
+  // });
+
+  return new Promise<any>((resolve) => {
+    const data2 = {
+      list: Array(10)
+        .fill('')
+        .map((_, index) => {
+          return {
+            id: index,
+            name: 'Gbeata',
+            position: 'Front-end',
+            sex: 'male',
+            follwer: 1341,
+            mits: 231,
+            forbid: false,
+          };
+        }),
+    };
+    setTimeout(() => {
+      resolve(data2);
+    }, 1000);
   });
 }

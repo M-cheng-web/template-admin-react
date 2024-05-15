@@ -15,8 +15,8 @@ const LayoutHeader = (props: any) => {
   return (
     // <Header classNames={classNames(styles['layout-header'], 'flex-between-h')}>
     <Header className={classNames('flex-between-h', styles['layout-header'])}>
-      <div className='flex-between-h' style={{ padding: '0 12px' }}>
-        <div className='flex-center-v'>
+      <div className="flex-between-h" style={{ padding: '0 12px' }}>
+        <div className="flex-center-v">
           <FoldTrigger />
           {hasCrumbs && <Breadcrumb />}
         </div>

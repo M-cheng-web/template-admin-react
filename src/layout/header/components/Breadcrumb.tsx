@@ -34,7 +34,7 @@ export default function LayoutBreadcrumb(props: BreadcrumbProps) {
   }, [pathname, i18n.language]);
 
   return (
-    <div className='flex-center-v' style={{ padding: '0 16px' }}>
+    <div className="flex-center-v" style={{ padding: '0 16px' }}>
       <Breadcrumb items={breadcrumbs} />
     </div>
   );
