@@ -11,7 +11,9 @@
     "lint:style": "stylelint \"**/*.css\"",
     "lint:prettier": "prettier -c --write \"src/**/*\"",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "i18n": "i18n-helper scan -wec",
+    "i18nMachine": "i18n-helper scan -we -tm -c"
   },
   "lint-staged": {
     "**/*.css": "stylelint",
@@ -45,6 +47,7 @@
     "echarts": "^5.5.0",
     "echarts-for-react": "^3.0.2",
     "file-saver": "^2.0.5",
+    "fs-extra": "^11.2.0",
     "fuse.js": "^7.0.0",
     "i18next": "^23.7.19",
     "i18next-browser-languagedetector": "^7.2.0",
@@ -76,8 +79,7 @@
     "vite-plugin-mock": "^3.0.2",
     "vite-plugin-svg-icons": "^2.0.1",
     "xlsx": "^0.18.5",
-    "zustand": "^4.4.7",
-    "fs-extra": "^11.2.0"
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
@@ -102,6 +104,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^8.0.3",
+    "i18n-helper": "^1.2.0",
     "less": "^4.2.0",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.4",

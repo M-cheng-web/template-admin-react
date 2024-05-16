@@ -1,7 +1,7 @@
-import { flattenTree } from '@/utils/tree';
 import { isEmpty } from 'ramda';
 import { lazy, Suspense, useMemo } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { flattenTree } from '@/utils/tree';
 
 import LoadingPage from '@/components/LoadingPage';
 
@@ -26,7 +26,10 @@ export function usePermissionRoutes() {
   const permissions = useUserPermissions();
   return useMemo(() => {
     const flattenedPermissions = flattenTree(permissions!);
-    const permissionRoutes = transformPermissionToMenuRoutes(permissions || [], flattenedPermissions);
+    const permissionRoutes = transformPermissionToMenuRoutes(
+      permissions || [],
+      flattenedPermissions,
+    );
     return [...permissionRoutes];
   }, [permissions]);
 }
@@ -38,9 +41,24 @@ export function usePermissionRoutes() {
  * @param {Permission[]} flattenedPermissions - array of flattened permissions
  * @return {AppRouteObject[]} array of transformed menu routes
  */
-function transformPermissionToMenuRoutes(permissions: Permission[], flattenedPermissions: Permission[]) {
+function transformPermissionToMenuRoutes(
+  permissions: Permission[],
+  flattenedPermissions: Permission[],
+) {
   return permissions.map((permission) => {
-    const { route, type, label, icon, order, hide, status, frameSrc, component, parentId, children = [] } = permission;
+    const {
+      route,
+      type,
+      label,
+      icon,
+      order,
+      hide,
+      status,
+      frameSrc,
+      component,
+      parentId,
+      children = [],
+    } = permission;
     const appRoute: AppRouteObject = {
       path: route,
       meta: {

@@ -16,8 +16,11 @@ export default function FoldTrigger() {
   }
 
   return (
-    <span className={cx(styles['compo_fold-trigger'], { [styles.unfold]: !settings.unfold })} onClick={toggledMenuFold}>
-      <SvgIcon name='unfold' size={20} />
+    <span
+      className={cx(styles['compo_fold-trigger'], { [styles.unfold]: !settings.unfold })}
+      onClick={toggledMenuFold}
+    >
+      <SvgIcon name="unfold" size={20} />
     </span>
   );
 }

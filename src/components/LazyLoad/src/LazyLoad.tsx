@@ -1,8 +1,7 @@
 import { type ReactNode, Suspense } from 'react';
 
-import Loading from './Loading';
-
 import type { LoadableComponent } from '@loadable/component';
+import Loading from './Loading';
 
 /**
  * @description 路由懒加载
@@ -10,11 +9,9 @@ import type { LoadableComponent } from '@loadable/component';
  * @returns element
  */
 const LazyLoad = (Component: LoadableComponent<{}>): ReactNode => (
-  <>
-    <Suspense fallback={<Loading />}>
-      <Component />
-    </Suspense>
-  </>
+  <Suspense fallback={<Loading />}>
+    <Component />
+  </Suspense>
 );
 
 export default LazyLoad;
