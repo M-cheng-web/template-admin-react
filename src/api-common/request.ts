@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 import { notification } from 'antd';
 import request, { type RequestOptionsInit, extend } from 'umi-request';
 
@@ -34,7 +36,7 @@ GRequest.interceptors.response.use(async (response, options) => {
     const data = await response.clone().json();
     if (data.code !== 0) {
       notification.error({
-        message: '请求错误',
+        message: t('请求错误'),
         description: data.msg,
       });
       return Promise.reject(data.msg);
@@ -66,7 +68,7 @@ GRequest.interceptors.response.use(async (response, options) => {
     });
   }
   notification.error({
-    message: '请求错误',
+    message: t('请求错误'),
     description: response.statusText,
   });
   return Promise.reject(response.statusText);

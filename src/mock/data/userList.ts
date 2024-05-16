@@ -1,8 +1,9 @@
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 import { Random } from 'mockjs';
 
-import { resultPageSuccess } from '../_utils';
-
 import type { MockMethod } from 'vite-plugin-mock';
+import { resultPageSuccess } from '../_utils';
 
 const geFollwer = () => Math.floor(Math.random() * 4);
 
@@ -21,6 +22,7 @@ const getPosition = () => {
     'Software Developer',
     'Research Scientist',
   ];
+
   const randomNum = Math.floor(Math.random() * hobbyList.length);
   return hobbyList[randomNum];
 };
@@ -33,7 +35,7 @@ const genList = () => {
       id: Number(`10${num}`) + 1,
       name: Random.name(),
       position: getPosition(),
-      sex: ['男', '女'][Number(Random.boolean())],
+      sex: [t('男'), t('女')][Number(Random.boolean())],
       follwer: geFollwer(),
       mits: Math.floor(Math.random() * 10),
       forbid: Random.boolean(),

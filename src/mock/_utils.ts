@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 // Interface data format used to return a unified format
 
 export interface RequestParams {
@@ -7,7 +9,7 @@ export interface RequestParams {
   query: any;
 }
 
-export function resultSuccess<T = Recordable>(data: T, { message = '成功' } = {}) {
+export function resultSuccess<T = Recordable>(data: T, { message = t('成功') } = {}) {
   return {
     type: 'success',
     code: 0,
@@ -16,7 +18,7 @@ export function resultSuccess<T = Recordable>(data: T, { message = '成功' } = 
   };
 }
 
-export function resultError(message = '失败', { code = -1, data = null } = {}) {
+export function resultError(message = t('失败'), { code = -1, data = null } = {}) {
   return {
     type: 'error',
     code,

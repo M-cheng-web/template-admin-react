@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 import { Icon } from '@iconify/react';
 import { Button, Dropdown } from 'antd';
-import { useTranslation } from 'react-i18next';
 
 import type { MenuProps } from 'antd';
 
@@ -16,6 +17,7 @@ const Selectlangulage = () => {
       label: 'English',
     },
   ];
+
   return (
     <Dropdown
       menu={{ items: languages, onClick: ({ key }) => i18n.changeLanguage(key) }}

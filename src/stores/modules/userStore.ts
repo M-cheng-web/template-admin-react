@@ -1,7 +1,8 @@
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { create } from 'zustand';
 import { getItem, removeItem, setItem } from '@/utils/storage';
 
@@ -69,7 +70,7 @@ export const useSignIn = () => {
       setUserInfo(rest);
       notification.success({
         message: t('登录成功'),
-        description: `欢迎回来: ${data.username}`,
+        description: t('欢迎回来:{{username}}', { username: data.username }),
         duration: 3,
       });
       return await Promise.resolve(res);

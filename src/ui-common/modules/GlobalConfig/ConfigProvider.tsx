@@ -1,13 +1,12 @@
 import { App as AntApp, ConfigProvider } from 'antd';
 
+import type { ConfigProviderProps } from 'antd/es/config-provider';
+import type { FC } from 'react';
 import SvgIcon from '../SvgIcon';
 import useStyles from './style';
 
-import type { ConfigProviderProps } from 'antd/es/config-provider';
-import type { FC } from 'react';
-
 type WaveConfig = NonNullable<Parameters<typeof ConfigProvider>[0]['wave']>;
-const createDot = (holder: HTMLElement, color: string, left: number, top: number, size: number = 0) => {
+const createDot = (holder: HTMLElement, color: string, left: number, top: number, size = 0) => {
   const dot = document.createElement('div');
   dot.style.position = 'absolute';
   dot.style.left = `${left}px`;
@@ -63,12 +62,12 @@ const showInsetEffect: WaveConfig['showEffect'] = (node, { event, component }) =
     dot.style.opacity = '0';
   });
 };
-export interface GlobalConfigProps extends ConfigProviderProps {}
+export type GlobalConfigProps = ConfigProviderProps;
 const GlobalConfig: FC<GlobalConfigProps> = ({ children, ...rest }) => {
   const { styles } = useStyles();
   const customizeRenderEmpty = () => (
     <div style={{ textAlign: 'center' }}>
-      <SvgIcon name='ic_content' size={120} />
+      <SvgIcon name="ic_content" size={120} />
       <p>Data Not Found</p>
     </div>
   );

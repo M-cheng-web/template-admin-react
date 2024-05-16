@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 import { clone, isString } from 'lodash-es';
 import axios from 'axios';
 import type { AxiosInstance, AxiosResponse } from 'axios';
@@ -32,7 +34,7 @@ const transform: AxiosTransform = {
     const { data } = res;
     // 错误的时候返回
     if (!res.data) {
-      throw new Error('请求接口错误');
+      throw new Error(t('请求接口错误'));
     }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
     const { code, message } = data;
@@ -47,7 +49,7 @@ const transform: AxiosTransform = {
     let timeoutMsg = '';
     switch (code) {
       case ResultEnum.TIMEOUT:
-        timeoutMsg = '登录超时,请重新登录';
+        timeoutMsg = t('登录超时,请重新登录');
         // TODO 登出操作 带上redirect地址
         break;
       default:
@@ -69,10 +71,10 @@ const transform: AxiosTransform = {
     }
     try {
       if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
-        errMessage = '接口请求超时,请刷新页面重试!';
+        errMessage = t('接口请求超时,请刷新页面重试!');
       }
       if (err?.includes('Network Error')) {
-        errMessage = '网络异常,请检查您的网络连接是否正常';
+        errMessage = t('网络异常,请检查您的网络连接是否正常');
       }
     } catch (_error) {
       throw new Error(_error as unknown as string);
@@ -80,25 +82,25 @@ const transform: AxiosTransform = {
     // 根据错误状态码处理, 后面抽离出去
     switch (response?.status) {
       case 401:
-        errMessage = '登录失效';
+        errMessage = t('登录失效');
         break;
       case 403:
-        errMessage = '拒绝访问';
+        errMessage = t('拒绝访问');
         break;
       case 404:
-        errMessage = '请求地址不存在';
+        errMessage = t('请求地址不存在');
         break;
       case 500:
-        errMessage = '服务器内部错误';
+        errMessage = t('服务器内部错误');
         break;
       case 501:
-        errMessage = '服务未实现';
+        errMessage = t('服务未实现');
         break;
       case 502:
-        errMessage = '网关错误';
+        errMessage = t('网关错误');
         break;
       case 503:
-        errMessage = '服务不可用';
+        errMessage = t('服务不可用');
         break;
       default:
         break;

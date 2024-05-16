@@ -16,9 +16,9 @@ import {
   TimePicker,
   TreeSelect,
 } from 'antd';
-import { t } from 'i18next';
-import { type FC, useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+// import { t } from 'i18next';
+import { type FC, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { CascaderProps, TreeSelectProps } from 'antd';
 import type { Rule } from 'antd/es/form';
@@ -29,6 +29,7 @@ import { FORM_COMPO } from '@/settings/websiteSetting';
 import { cascaderData, checkboxData, cityData, provinceData, radioData, treeData } from './data';
 
 const BasicForm: FC = () => {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
 
   const province = provinceData[0];
@@ -150,7 +151,7 @@ const BasicForm: FC = () => {
   };
 
   return (
-    <PageWrapper plugin={FORM_COMPO}>
+    <PageWrapper plugin={FORM_COMPO()}>
       <Card bordered={false}>
         <Form
           form={form}
