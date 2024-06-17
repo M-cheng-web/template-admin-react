@@ -1,8 +1,8 @@
 import { Button, Card, Form, Input, message, Radio, Select, Space, Table } from 'antd';
 import { t } from 'i18next';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
+import type { ColumnType } from 'antd/es/table';
 import { PageWrapper } from '@/components/Page';
 
 import { XLSX_PLUGIN } from '@/settings/websiteSetting';
@@ -11,7 +11,6 @@ import { useExcel } from '../useExcel';
 import { tableData } from './data';
 
 import type { DataToSheet } from '../types';
-import type { ColumnType } from 'antd/es/table';
 
 type FileType = 'xlsx' | 'csv' | 'txt';
 
@@ -81,12 +80,17 @@ const ExportExcel = (props: any) => {
   return (
     <PageWrapper plugin={XLSX_PLUGIN}>
       <Card bordered={false}>
-        <Space direction='vertical' size={16} style={{ width: '100%' }}>
-          <Form layout='inline' autoComplete='off' initialValues={formParam} onFinish={handleExport}>
-            <Item label={t('文件名:')} name='fileName'>
+        <Space direction="vertical" size={16} style={{ width: '100%' }}>
+          <Form
+            layout="inline"
+            autoComplete="off"
+            initialValues={formParam}
+            onFinish={handleExport}
+          >
+            <Item label={t('文件名:')} name="fileName">
               <Input placeholder={t('文件名')} />
             </Item>
-            <Item label={t('自动宽度:')} name='autoWidth'>
+            <Item label={t('自动宽度:')} name="autoWidth">
               <Group
                 options={[
                   { label: t('自动'), value: true },
@@ -94,7 +98,7 @@ const ExportExcel = (props: any) => {
                 ]}
               />
             </Item>
-            <Item label={t('文件类型:')} name='fileType'>
+            <Item label={t('文件类型:')} name="fileType">
               <Select
                 options={[
                   { label: 'xlsx', value: 'xlsx' },
@@ -105,7 +109,7 @@ const ExportExcel = (props: any) => {
               />
             </Item>
             <Item>
-              <Button type='primary' htmlType='submit'>
+              <Button type="primary" htmlType="submit">
                 {t('导出Excel')}
               </Button>
             </Item>

@@ -2,7 +2,6 @@ import { Card, Col, Row } from 'antd';
 import { t } from 'i18next';
 import { cloneDeep } from 'lodash-es';
 import React, { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
 import { ReactSortable } from 'react-sortablejs';
 
 import { PageWrapper } from '@/components/Page';

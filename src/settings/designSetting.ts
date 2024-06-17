@@ -1,5 +1,4 @@
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 import { AppModeEnum } from '@/enums/appEnum';
 

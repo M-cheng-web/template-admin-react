@@ -8,12 +8,7 @@ import { base64toBlob, urlToBase64 } from './image';
  * @param mineType
  * @param bom
  */
-export function downloadImgByUrl(
-  url: string,
-  filename: string,
-  mineType?: string,
-  bom?: BlobPart,
-) {
+export function downloadImgByUrl(url: string, filename: string, mineType?: string, bom?: BlobPart) {
   urlToBase64(url).then((base64) => {
     downloadImgByBase64(base64, filename, mineType, bom);
   });
@@ -75,9 +70,9 @@ export function downloadByUrl({
   target = '_blank',
   fileName,
 }: {
-  url: string
-  target?: TargetContext
-  fileName?: string
+  url: string;
+  target?: TargetContext;
+  fileName?: string;
 }): boolean {
   const isChrome = window.navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
   const isSafari = window.navigator.userAgent.toLowerCase().indexOf('safari') > -1;

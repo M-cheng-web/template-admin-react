@@ -2,7 +2,6 @@ import { Typography } from 'antd';
 import { useTheme } from 'antd-style';
 import { t } from 'i18next';
 import { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
 import { BaseSlick, Translatex } from '@/ui-common';
 
 import cover_1 from '@/assets/images/cover_1.jpg';

@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 import { lazy } from '@loadable/component';
 import LazyLoad from '@/components/LazyLoad';
@@ -38,16 +37,6 @@ const FormRoute: RouteObject = {
         key: 'searchForm',
       },
     },
-    // {
-    //   path: 'form-designer',
-    //   name: 'FormDesigner',
-    //   // element: <BlankPage />,
-    //   element: LazyLoad(lazy(() => import('@/views/blank'))),
-    //   meta: {
-    //     title: '表单设计器',
-    //     key: 'formDesigner',
-    //   },
-    // },
   ],
 };
 

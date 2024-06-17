@@ -1,7 +1,6 @@
 import { Button, Card, Col, Form, InputNumber, Row, Select, Space } from 'antd';
 import { t } from 'i18next';
 import { type FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 import SvgIcon from '@/components/SvgIcon';
@@ -80,7 +79,7 @@ const ImageCompress: FC = () => {
       <Row gutter={12}>
         <Col span={16}>
           <Card title={t('图片区域')} bordered={false} bodyStyle={{ height: '500px' }}>
-            <div className='flex-center'>
+            <div className="flex-center">
               <div
                 style={{
                   width: '800px',
@@ -101,7 +100,7 @@ const ImageCompress: FC = () => {
               colon={false}
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 18 }}
-              labelAlign='left'
+              labelAlign="left"
               initialValues={{ ...defaultForm }}
               style={{ width: '300px', margin: '60px auto 0' }}
               onFinish={onFinish}
@@ -111,7 +110,7 @@ const ImageCompress: FC = () => {
               </Form.Item>
               <Form.Item label={t('图片尺寸')} style={{ marginBottom: 0 }}>
                 <Space>
-                  <Form.Item name='width'>
+                  <Form.Item name="width">
                     <InputNumber
                       min={0}
                       max={imageInfo.width}
@@ -121,9 +120,9 @@ const ImageCompress: FC = () => {
                     />
                   </Form.Item>
                   <Form.Item>
-                    <SvgIcon name='linking' />
+                    <SvgIcon name="linking" />
                   </Form.Item>
-                  <Form.Item name='height'>
+                  <Form.Item name="height">
                     <InputNumber
                       min={0}
                       max={imageInfo.height}
@@ -134,7 +133,7 @@ const ImageCompress: FC = () => {
                   </Form.Item>
                 </Space>
               </Form.Item>
-              <Form.Item label={t('压缩比例')} name='ratio'>
+              <Form.Item label={t('压缩比例')} name="ratio">
                 <InputNumber
                   min={0}
                   max={100}
@@ -144,7 +143,7 @@ const ImageCompress: FC = () => {
                   style={{ width: '100%' }}
                 />
               </Form.Item>
-              <Form.Item label={t('图片质量')} name='quality'>
+              <Form.Item label={t('图片质量')} name="quality">
                 <Select
                   options={[
                     { value: 1, label: 100 },
@@ -154,7 +153,7 @@ const ImageCompress: FC = () => {
                   ]}
                 />
               </Form.Item>
-              <Form.Item label={t('图片格式')} name='type'>
+              <Form.Item label={t('图片格式')} name="type">
                 <Select
                   options={[
                     { value: 'image/png', label: 'PNG' },
@@ -163,8 +162,8 @@ const ImageCompress: FC = () => {
                   ]}
                 />
               </Form.Item>
-              <Form.Item label=' '>
-                <Button type='primary' htmlType='submit' style={{ width: '100%' }}>
+              <Form.Item label=" ">
+                <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
                   {t('压缩图片')}
                 </Button>
               </Form.Item>

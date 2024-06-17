@@ -1,8 +1,7 @@
 import { Flex, Typography } from 'antd';
 
-import useStyles from './styles';
-
 import type { FC } from 'react';
+import useStyles from './styles';
 
 const { Title, Text } = Typography;
 export interface PMessage {
@@ -16,12 +15,12 @@ const Message: FC<PMessage> = ({ avatar, time, content, user }) => {
   return (
     <Flex gap={8} className={styles['message-list']}>
       <div>{avatar}</div>
-      <div className='message_content'>
-        <Flex justify={'space-between'} align='center'>
+      <div className="message_content">
+        <Flex justify="space-between" align="center">
           <Title level={5}>{user}</Title>
           <div>{time}</div>
         </Flex>
-        <Text type='secondary'>{content}</Text>
+        <Text type="secondary">{content}</Text>
       </div>
     </Flex>
   );

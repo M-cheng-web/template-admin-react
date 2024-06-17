@@ -1,26 +1,148 @@
-import { CacheTypeEnum, TOKEN_KEY } from '@/enums/cacheEnum';
-import { appSetting } from '@/settings/appBaseSetting';
+/**
+ * 对用户 token 进行缓存操作
+ * 分两种:
+ * 持久缓存 - localStorage
+ * 单页面缓存 - sessionStorage
+ */
+// eslint-disable-next-line max-classes-per-file
+type resultTpye = {
+  value: string;
+  express?: number;
+  recordTime: number;
+};
 
-import { type BasicKeys, Persistent } from './cache/persistent';
+const TokenKey = 'Interview-Token';
+const TokenRememberKey = 'Interview-TokenRememberKey';
 
-const { permissionCacheType } = appSetting;
-const isLocal = permissionCacheType === CacheTypeEnum.LOCAL;
+function getTokenRemember() {
+  const remember = LocalStorage.getItem(TokenRememberKey);
+  if (typeof remember === 'boolean') {
+    return remember;
+  }
+  return true;
+}
+// 保持登录
+export function setTokenRemember(remember: boolean) {
+  removeToken();
+  LocalStorage.setItem(TokenRememberKey, remember);
+}
 
 export function getToken() {
-  return getAuthCache(TOKEN_KEY);
+  return getTokenRemember() ? LocalStorage.getItem(TokenKey) : SessionStorage.getItem(TokenKey);
+}
+export function setToken(token: string, express?: number) {
+  return getTokenRemember()
+    ? LocalStorage.setItem(TokenKey, token, express)
+    : SessionStorage.setItem(TokenKey, token, express);
+}
+export function removeToken() {
+  return getTokenRemember()
+    ? LocalStorage.removeItem(TokenKey)
+    : SessionStorage.removeItem(TokenKey);
 }
 
-export function getAuthCache<T>(key: BasicKeys) {
-  const fn = isLocal ? Persistent.getLocal : Persistent.getSession;
-  return fn(key) as T;
+/**
+ * sessionStorage
+ * 可设置过期时间的 storage 封装。到期之后，会在取的时候进行删除。
+ */
+class SessionStorage {
+  /**
+   * 设置缓存
+   * @param {*} key
+   * @param {*} value
+   * @param {*} express 过期时间，毫秒数
+   */
+  static setItem(key: string, value: any, express?: number) {
+    sessionStorage.setItem(
+      key,
+      JSON.stringify({
+        value,
+        recordTime: Date.now(),
+        express,
+      }),
+    );
+  }
+
+  /**
+   * 获取缓存
+   * @param key
+   */
+  static getItem(key: string) {
+    const result = sessionStorage.getItem(key);
+    if (result) {
+      const { value, express, recordTime } = JSON.parse(result) as resultTpye;
+      if (!express) return value;
+      const curTime = Date.now();
+      if (curTime > recordTime + express) {
+        // 数据已过期
+        this.removeItem(key);
+        return null;
+      }
+      return value;
+    }
+    return null;
+  }
+
+  static removeItem(key: string) {
+    sessionStorage.removeItem(key);
+  }
+
+  static clearAll() {
+    sessionStorage.clear();
+  }
 }
 
-export function setAuthCache(key: BasicKeys, value: any) {
-  const fn = isLocal ? Persistent.setLocal : Persistent.setSession;
-  return fn(key, value, true);
+/**
+ * localStorage
+ * 可设置过期时间的 storage 封装。到期之后，会在取的时候进行删除。
+ */
+class LocalStorage {
+  /**
+   * 设置缓存
+   * @param {*} key
+   * @param {*} value
+   * @param {*} express 过期时间，毫秒数
+   */
+  static setItem(key: string, value: any, express?: number) {
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        value,
+        recordTime: Date.now(),
+        express,
+      }),
+    );
+  }
+
+  /**
+   * 获取缓存
+   * @param key
+   */
+  static getItem(key: string) {
+    const result = localStorage.getItem(key);
+    if (result) {
+      const { value, express, recordTime } = JSON.parse(result) as resultTpye;
+      if (!express) return value;
+      const curTime = Date.now();
+      if (curTime > recordTime + express) {
+        // 数据已过期
+        this.removeItem(key);
+        return null;
+      }
+      return value;
+    }
+    return null;
+  }
+
+  static removeItem(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  static clearAll() {
+    localStorage.clear();
+  }
 }
 
-export function clearAuthCache(immediate = true) {
-  const fn = isLocal ? Persistent.clearLocal : Persistent.clearSession;
-  return fn(immediate);
-}
+export default Storage;
+
+getTokenRemember();

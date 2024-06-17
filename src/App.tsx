@@ -20,7 +20,7 @@ function App() {
     const asyncOperation = async () => {
       // 模拟异步操作
       await new Promise((resolve) => {
-        setTimeout(resolve, 1000);
+        setTimeout(resolve, 100);
       });
       // 完成异步操作后，切换到主应用
       setLoading(false);
@@ -28,6 +28,7 @@ function App() {
 
     asyncOperation();
   }, []); // 仅在组件挂载时执行
+
   return (
     <GlobalConfig>
       <ThemeProvider

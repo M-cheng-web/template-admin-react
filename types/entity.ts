@@ -1,20 +1,12 @@
-import type { BasicStatus, PermissionType } from './enum';
-
 export interface UserInfo {
-  id: string;
+  userId: string;
   email: string;
-  username: string;
+  name: string;
   password?: string;
   avatar?: string;
   role?: Role;
-  status?: BasicStatus;
+  status?: any;
   permissions?: Permission[];
-}
-
-export interface UserToken {
-  accessToken?: string;
-  refreshToken?: string;
-  token?: string;
 }
 
 export interface Permission {
@@ -22,9 +14,9 @@ export interface Permission {
   parentId: string;
   name: string;
   label: string;
-  type: PermissionType;
+  type: any;
   route: string;
-  status?: BasicStatus;
+  status?: any;
   order?: number;
   icon?: string;
   component?: string;
@@ -38,7 +30,7 @@ export interface Role {
   id: string;
   name: string;
   label: string;
-  status: BasicStatus;
+  status: any;
   order?: number;
   desc?: string;
   permission?: Permission[];

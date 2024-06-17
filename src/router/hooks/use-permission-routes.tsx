@@ -10,7 +10,7 @@ import { useUserPermissions } from '@/stores/modules/userStore';
 import type { Permission } from '#/entity';
 import type { AppRouteObject } from '#/router';
 
-import { BasicStatus, PermissionType } from '#/enum';
+import { BasicStatus, PermissionType } from '@/enums/appEnum';
 
 // 使用 import.meta.glob 获取所有路由组件
 const pages = import.meta.glob('/src/views/**/*.tsx');

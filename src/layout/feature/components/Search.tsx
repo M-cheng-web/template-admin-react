@@ -8,7 +8,12 @@ const GlobalSearch = () => {
   const modalRef = useRef<SearchModalMethods>(null);
   return (
     <>
-      <Button size='small' shape='circle' onClick={() => modalRef.current?.open()} icon={<SearchOutlined />} />
+      <Button
+        size="small"
+        shape="circle"
+        onClick={() => modalRef.current?.open()}
+        icon={<SearchOutlined />}
+      />
       <SearchModal ref={modalRef} />
     </>
   );

@@ -1,13 +1,12 @@
 import { useDebounceFn } from 'ahooks';
 import { useEffect, useRef } from 'react';
 
-import echarts from '@/utils/echarts';
-
 import type { EChartsOption } from 'echarts';
+import echarts from '@/utils/echarts';
 
 export function useECharts(
   options: EChartsOption,
-  loading: boolean = true,
+  loading = true,
   theme: 'light' | 'dark' | 'default' = 'default',
 ) {
   const chartRef = useRef<HTMLDivElement>(null);

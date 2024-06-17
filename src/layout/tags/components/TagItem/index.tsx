@@ -1,9 +1,8 @@
 import { Tag } from 'antd';
 import classNames from 'classnames';
 
-import useStyles from './index.module.style';
-
 import type { FC } from 'react';
+import useStyles from './index.module.style';
 
 interface PropState {
   name: string;
@@ -13,9 +12,7 @@ interface PropState {
   onClick: () => void;
 }
 
-const TagItem: FC<PropState> = ({
-  name, fixed, active = false, closeTag, onClick,
-}) => {
+const TagItem: FC<PropState> = ({ name, fixed, active = false, closeTag, onClick }) => {
   const { styles } = useStyles({ active });
   return (
     <Tag

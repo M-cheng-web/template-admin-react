@@ -3,10 +3,9 @@ import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import type { Store } from 'redux';
 import menuSlice from './modules/menu';
 import tagsSlice from './modules/tags';
-
-import type { Store } from 'redux';
 
 const persistConfig = {
   key: 'redux-persist',
@@ -29,7 +28,12 @@ export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

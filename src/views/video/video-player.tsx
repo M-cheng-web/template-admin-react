@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { Card, Col, Row } from 'antd';
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 import {
   BigPlayButton,
   ControlBar,
@@ -28,8 +27,8 @@ const VideoPlayers = () => (
       </Col>
       <Col span={12}>
         <Card title={t('视频播放插件')} bordered={false}>
-          <Player src={VIDEO_RES_SRC} fluid preload='auto' aspectRatio='16:9'>
-            <BigPlayButton position='center' />
+          <Player src={VIDEO_RES_SRC} fluid preload="auto" aspectRatio="16:9">
+            <BigPlayButton position="center" />
             <ControlBar>
               <CurrentTimeDisplay order={4.1} />
               <TimeDivider order={4.2} />

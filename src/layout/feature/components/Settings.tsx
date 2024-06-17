@@ -1,9 +1,8 @@
 import { SettingOutlined } from '@ant-design/icons';
-import { Button, Drawer, List, Switch, Tooltip, Typography } from 'antd';
+import { Button, Drawer, List, Tooltip, Typography } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 import { t } from 'i18next';
 import { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
 import { useGlobalStore } from '@/stores-common';
 
 import FullScreen from './FullScreen';

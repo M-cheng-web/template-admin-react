@@ -2,7 +2,6 @@ import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Modal, Row, Upload } from 'antd';
 import { t } from 'i18next';
 import React, { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
 
 import type { RcFile, UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';

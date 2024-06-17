@@ -1,9 +1,8 @@
 import { Card } from 'antd';
 import CountUp from 'react-countup';
 
-import SvgIcon from '@/components/SvgIcon';
-
 import type { FC } from 'react';
+import SvgIcon from '@/components/SvgIcon';
 
 interface PropState {
   loading: boolean;
@@ -15,9 +14,9 @@ interface PropState {
 
 const CountUpCard: FC<PropState> = (props) => (
   <Card loading={props.loading} bordered={false} bodyStyle={{ padding: 0 }}>
-    <div className='flex-center-v'>
+    <div className="flex-center-v">
       <div
-        className='flex-center'
+        className="flex-center"
         style={{
           width: '120px',
           height: '120px',

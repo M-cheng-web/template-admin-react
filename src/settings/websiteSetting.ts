@@ -1,12 +1,9 @@
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 // Github repo url
 export const GITHUB_URL = 'https://github.com/baimingxuan/vue3-admin-design';
 
 // Form component
 export const FORM_COMPO = () => {
-  const { t } = useTranslation();
-
   return {
     name: t('Form表单'),
     url: 'https://www.antdv.com/components/form',
@@ -17,9 +14,9 @@ export const FORM_COMPO = () => {
 // Form Search Component
 export const FORM_SEARCH_COMPO = {
   name: t('Form查询表单'),
-  url: t('暂未发布，可直接查看 /packages/gbeata 组件库'),
+  url: t('暂未发布，可直接查看 /packages/ 组件库'),
   desc: t(
-    'GSearchForm: 使用 ant-design 的 form 组件, 进行二次封装的组件，具体实现可查看 /packages/gbeata/src/GSearchForm 组件库',
+    'GSearchForm: 使用 ant-design 的 form 组件, 进行二次封装的组件，具体实现可查看 /packages/src/GSearchForm 组件库',
   ),
 };
 

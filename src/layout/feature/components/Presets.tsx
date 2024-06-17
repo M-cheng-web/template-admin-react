@@ -13,7 +13,7 @@ const Presets = () => {
       // eslint-disable-next-line implicit-arrow-linebreak
       APP_THEME_COLOR_LIST.map((item) => (
         <Col span={8} key={item.color}>
-          <Button block size='large' onClick={() => setPreset(item.color)}>
+          <Button block size="large" onClick={() => setPreset(item.color)}>
             <Badge
               styles={{
                 root: {},
@@ -31,7 +31,7 @@ const Presets = () => {
               }}
               status={preset === item.color ? 'processing' : 'default'}
               color={item.color}
-            ></Badge>
+            />
           </Button>
         </Col>
       )),

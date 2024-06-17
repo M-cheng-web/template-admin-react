@@ -2,7 +2,6 @@ import { Button, Card, Col, Form, Input, InputNumber, Row, Space } from 'antd';
 import { t } from 'i18next';
 import React, { useEffect, useRef, useState } from 'react';
 import CountUp, { useCountUp } from 'react-countup';
-import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 

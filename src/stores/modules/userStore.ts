@@ -1,46 +1,40 @@
-import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useCallback } from 'react';
 import { create } from 'zustand';
-import { getItem, removeItem, setItem } from '@/utils/storage';
-
-// import { getItem, removeItem, setItem } from '@/utils/storage';
-// 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
-// import { persist } from 'zustand/middleware';
 import { loginApi } from '@/api';
+import type { UserInfo } from '#/entity';
 
-import type { UserInfo, UserToken } from '#/entity';
-
-import { StorageEnum } from '#/enum';
+import { getItem, removeItem, setItem } from '@/utils/storage';
+import { TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum';
 
 type UserStore = {
   userInfo: Partial<UserInfo>;
-  userToken: UserToken;
+  userToken: string;
   actions: {
     setUserInfo: (userInfo: UserInfo) => void;
-    setUserToken: (token: UserToken) => void;
+    setUserToken: (token: string) => void;
     clearUserInfoAndToken: () => void;
   };
 };
 
 const useUserStore = create<UserStore>((set) => ({
-  userInfo: getItem<UserInfo>(StorageEnum.User) || {},
-  userToken: getItem<UserToken>(StorageEnum.Token) || {},
+  userInfo: getItem<UserInfo>(USER_INFO_KEY) || {},
+  userToken: getItem<string>(TOKEN_KEY) || '',
   actions: {
     setUserInfo: (userInfo: UserInfo) => {
       set({ userInfo });
-      setItem(StorageEnum.User, userInfo);
+      setItem(USER_INFO_KEY, userInfo);
     },
-    setUserToken: (token: UserToken) => {
+    setUserToken: (token: string) => {
       set({ userToken: token });
-      setItem(StorageEnum.Token, token);
+      setItem(TOKEN_KEY, token);
     },
     clearUserInfoAndToken: () => {
-      set({ userInfo: {}, userToken: {} });
-      removeItem(StorageEnum.User);
-      removeItem(StorageEnum.Token);
+      set({ userInfo: {}, userToken: '' });
+      removeItem(USER_INFO_KEY);
+      removeItem(TOKEN_KEY);
     },
   },
 }));
@@ -54,7 +48,6 @@ export const useUserPermissions = () => useUserStore((state) => state.userInfo?.
 export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
-  const { t } = useTranslation();
   const { notification, message } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
 
@@ -65,20 +58,15 @@ export const useSignIn = () => {
   const signIn = async (data: any): Promise<any> => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { token, ...rest } = res as any;
-      setUserToken({ token });
-      setUserInfo(rest);
+      const { token } = res as any;
+      setUserToken(token);
+      setUserInfo(res);
       notification.success({
-        message: t('登录成功'),
-        description: t('欢迎回来:{{username}}', { username: data.username }),
+        message: t('login-success'),
         duration: 3,
       });
       return await Promise.resolve(res);
     } catch (error: any) {
-      message.error({
-        content: error.message,
-        duration: 3,
-      });
       return Promise.reject(error);
     }
   };

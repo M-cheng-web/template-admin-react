@@ -1,29 +1,13 @@
-import { defHttp } from '@/api-common';
+import { request } from '@/utils/http/index';
+import { requestOptionType } from '@/types';
 
-import { service } from '@/utils/axios';
+/**
+ * 登录
+ */
+export const loginApi = (data?: object): Promise<any> => {
+  // const config: requestOptionType = { url: '/auth/login', method: 'post' };
+  // return request(config, data);
 
-import type { UserInfo, UserToken } from '#/entity';
-
-export interface LoginParams {
-  username: string;
-  password: string;
-}
-
-export type SignRes = UserToken & {
-  user: UserInfo;
-};
-
-// User login api
-export const loginApi = (data: LoginParams): Promise<any> => {
-  // return service({
-  //   url: '/login',
-  //   method: 'post',
-  //   data,
-  // });
-  // return defHttp.post<SignRes>({
-  //   url: '/login',
-  //   data,
-  // });
   return new Promise((resolve) => {
     const data2 = {
       token: 'xxssssyyyqqzzz-vvaaa',
@@ -37,63 +21,30 @@ export const loginApi = (data: LoginParams): Promise<any> => {
 };
 
 // Get User info
-export function getUserInfo(): Promise<any> {
-  // return service({
-  //   url: '/getUserInfo',
-  //   method: 'get',
-  // });
-  return defHttp.get({
-    url: '/getUserInfo',
-  });
+export function getUserInfo(data?: object): Promise<any> {
+  const config: requestOptionType = { url: '/getUserInfo', method: 'post' };
+  return request(config, data);
 }
 
 // User logout api
-export function logoutApi() {
-  // return service({
-  //   url: '/logout',
-  //   method: 'get',
-  // });
-  return defHttp.get({
-    url: '/logout',
-  });
+export function logoutApi(data?: object) {
+  const config: requestOptionType = { url: '/logout', method: 'get' };
+  return request(config, data);
 }
 
 // Table list
-export function getTableList(params: any) {
-  // return service({
-  //   url: '/table/getTableList',
-  //   method: 'get',
-  //   params,
-  // });
-  return defHttp.get({
-    url: '/table/getTableList',
-    params,
-  });
+export function getTableList(data?: object) {
+  const config: requestOptionType = { url: '/table/getTableList', method: 'get' };
+  return request(config, data);
 }
 
 // juejin api
-export function getJueJinList(params: any) {
-  // return service({
-  //   url: 'article/queryList',
-  //   method: 'post',
-  //   data: params,
-  // });
-  return defHttp.post({
-    url: '/article/queryList',
-    data: params,
-  });
+export function getJueJinList(data?: object) {
+  const config: requestOptionType = { url: '/article/queryList', method: 'post' };
+  return request(config, data);
 }
 
 export function getUsersList() {
-  // return service({
-  //   url: 'user/getUserList',
-  //   method: 'get',
-  // }) as unknown as Promise<T>;
-
-  // return defHttp.get<T>({
-  //   url: '/user/getUserList',
-  // });
-
   return new Promise<any>((resolve) => {
     const data2 = {
       list: Array(10)

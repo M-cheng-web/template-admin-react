@@ -2,16 +2,14 @@ import { CloudUploadOutlined } from '@ant-design/icons';
 import { Card, message, Space, Table, Upload } from 'antd';
 import { t } from 'i18next';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
+import type { ColumnType } from 'antd/es/table';
+import type { UploadChangeParam } from 'antd/es/upload';
 import { PageWrapper } from '@/components/Page';
 
 import { XLSX_PLUGIN } from '@/settings/websiteSetting';
 
 import { useExcel } from './useExcel';
-
-import type { ColumnType } from 'antd/es/table';
-import type { UploadChangeParam } from 'antd/es/upload';
 
 const ImportExcel = (props: any) => {
   const { Dragger } = Upload;
@@ -43,7 +41,11 @@ const ImportExcel = (props: any) => {
     reader.onload = (e) => {
       const data = e.target && e.target.result;
       const { header, results } = readDataFromExcel(data, 'array');
-      const columns = header.map((key) => ({ title: key, dataIndex: key, align: 'center' })) as ColumnType<any>[];
+      const columns = header.map((key) => ({
+        title: key,
+        dataIndex: key,
+        align: 'center',
+      })) as ColumnType<any>[];
       setTableColumns(columns);
       setTableData(results as object[]);
     };
@@ -56,9 +58,14 @@ const ImportExcel = (props: any) => {
   return (
     <PageWrapper plugin={XLSX_PLUGIN}>
       <Card bordered={false}>
-        <Space direction='vertical' size={16} style={{ width: '100%' }}>
-          <Dragger accept='.xlsx, .xls, .csv' showUploadList={false} maxCount={1} onChange={handleChange}>
-            <p className='ant-upload-drag-icon' style={{ marginBottom: 0 }}>
+        <Space direction="vertical" size={16} style={{ width: '100%' }}>
+          <Dragger
+            accept=".xlsx, .xls, .csv"
+            showUploadList={false}
+            maxCount={1}
+            onChange={handleChange}
+          >
+            <p className="ant-upload-drag-icon" style={{ marginBottom: 0 }}>
               <CloudUploadOutlined rev={undefined} />
             </p>
             <p>

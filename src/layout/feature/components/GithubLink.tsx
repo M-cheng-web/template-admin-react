@@ -9,8 +9,8 @@ export default function GithubLink() {
   }
 
   return (
-    <Tooltip title='github' placement='bottom' mouseEnterDelay={0.5}>
-      <Button shape='circle' onClick={openGithub} size='small' icon={<GithubOutlined />} />
+    <Tooltip title="github" placement="bottom" mouseEnterDelay={0.5}>
+      <Button shape="circle" onClick={openGithub} size="small" icon={<GithubOutlined />} />
     </Tooltip>
   );
 }

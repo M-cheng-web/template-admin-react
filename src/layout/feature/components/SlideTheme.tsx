@@ -1,9 +1,8 @@
 import { Segmented, Tooltip } from 'antd';
 import { type ThemeMode, useTheme, useThemeMode } from 'antd-style';
 
-import SvgIcon from '@/components/SvgIcon';
-
 import type { SegmentedLabeledOption } from 'antd/lib/segmented';
+import SvgIcon from '@/components/SvgIcon';
 
 export default function SlideTheme() {
   const { themeMode, setThemeMode } = useThemeMode();
@@ -12,7 +11,7 @@ export default function SlideTheme() {
     {
       label: (
         <div style={{ padding: '16px', color: token.colorPrimary }}>
-          <SvgIcon style={{ color: token.colorPrimary }} name='sun' size={18} />
+          <SvgIcon style={{ color: token.colorPrimary }} name="sun" size={18} />
         </div>
       ),
       value: 'light',
@@ -20,7 +19,7 @@ export default function SlideTheme() {
     {
       label: (
         <div style={{ padding: '16px', color: token.colorPrimary }}>
-          <SvgIcon name='moon' size={18} />
+          <SvgIcon name="moon" size={18} />
         </div>
       ),
       value: 'dark',

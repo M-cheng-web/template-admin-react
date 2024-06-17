@@ -1,6 +1,5 @@
 import { Button, message, Upload } from 'antd';
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { FC } from 'react';
@@ -48,13 +47,13 @@ const UploadImage: FC<propState> = ({ onSuccess }) => {
 
   return (
     <Upload
-      action=''
-      accept='.jpg, .jpeg, .gif, .png, .bmp'
+      action=""
+      accept=".jpg, .jpeg, .gif, .png, .bmp"
       multiple={false}
       showUploadList={false}
       onChange={handleChange}
     >
-      <Button type='primary'>{t('上传图片')}</Button>
+      <Button type="primary">{t('上传图片')}</Button>
     </Upload>
   );
 };

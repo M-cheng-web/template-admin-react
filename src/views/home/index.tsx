@@ -1,5 +1,4 @@
-import { useTranslation } from 'react-i18next';
-// import { t } from 'i18next';
+import { t } from 'i18next';
 import { Button, Col, Divider, Row, Typography } from 'antd';
 import type { FC } from 'react';
 import { AnimatePanel } from '@/ui-common';
@@ -15,7 +14,6 @@ import useStyles from './index.style';
 const { Title, Text } = Typography;
 const HomePage: FC = () => {
   const { styles } = useStyles();
-  const { t } = useTranslation();
   return (
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>

@@ -1,7 +1,6 @@
 import { Card, Col, Row, Table, Transfer, Tree } from 'antd';
 import { t } from 'i18next';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import type { DataNode } from 'antd/es/tree';
 import { PageWrapper } from '@/components/Page';

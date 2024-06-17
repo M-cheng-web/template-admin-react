@@ -6,7 +6,6 @@ import { useTheme } from 'antd-style';
 import Fuse from 'fuse.js';
 import { t } from 'i18next';
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { treeToList } from '@/utils/helper/treeHelper';
@@ -90,51 +89,52 @@ const SearchModal = forwardRef<SearchModalMethods, SearchModalProps>((props, ref
     const regex = new RegExp(`(${searchValue})`, 'gi');
     return text.replace(
       regex,
-      (match, p1) => `<span style="background-color: ${token.colorPrimaryBorderHover};">${p1}</span>`,
+      (match, p1) =>
+        `<span style="background-color: ${token.colorPrimaryBorderHover};">${p1}</span>`,
     );
   };
 
   return (
-    <>
-      <Modal
-        title={
-          <Input
-            size='large'
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-            placeholder={t('请输入搜索...')}
-            prefix={<SearchOutlined />}
-            suffix={<Badge count={'Esc'} color={token.colorPrimaryHover} />}
-          />
-        }
-        closeIcon={null}
-        open={isModalOpen}
-        onOk={() => setIsModalOpen(() => false)}
-        onCancel={() => setIsModalOpen(() => false)}
-        footer={null}
-        classNames={classNames}
-        styles={modalStyles}
-      >
-        <List
-          itemLayout='horizontal'
-          dataSource={value ? fuse.search(value).map((item) => item.item) : menus()}
-          renderItem={(item: AppMenu) => (
-            <List.Item>
-              <List.Item.Meta
-                title={
-                  <Link
-                    to={item.path}
-                    onClick={() => setIsModalOpen(() => false)}
-                    dangerouslySetInnerHTML={{ __html: highlightText(item.name, value) }}
-                  />
-                }
-                description={<span dangerouslySetInnerHTML={{ __html: highlightText(item.path, value) }} />}
-              />
-            </List.Item>
-          )}
+    <Modal
+      title={
+        <Input
+          size="large"
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+          placeholder={t('请输入搜索...')}
+          prefix={<SearchOutlined />}
+          suffix={<Badge count="Esc" color={token.colorPrimaryHover} />}
         />
-      </Modal>
-    </>
+      }
+      closeIcon={null}
+      open={isModalOpen}
+      onOk={() => setIsModalOpen(() => false)}
+      onCancel={() => setIsModalOpen(() => false)}
+      footer={null}
+      classNames={classNames}
+      styles={modalStyles}
+    >
+      <List
+        itemLayout="horizontal"
+        dataSource={value ? fuse.search(value).map((item) => item.item) : menus()}
+        renderItem={(item: AppMenu) => (
+          <List.Item>
+            <List.Item.Meta
+              title={
+                <Link
+                  to={item.path}
+                  onClick={() => setIsModalOpen(() => false)}
+                  dangerouslySetInnerHTML={{ __html: highlightText(item.name, value) }}
+                />
+              }
+              description={
+                <span dangerouslySetInnerHTML={{ __html: highlightText(item.path, value) }} />
+              }
+            />
+          </List.Item>
+        )}
+      />
+    </Modal>
   );
 });
 

@@ -4,6 +4,8 @@ const useStyles = createStyles(() => ({
   '*': {
     padding: '0',
     margin: '0',
+    boxSizing: 'border-box',
+    color: 'red',
   },
   'ul,li': {
     listStyle: 'none',

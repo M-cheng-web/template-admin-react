@@ -8,6 +8,7 @@ export default defineApplicationConfig({
     server: {
       // Listening on all local ips
       host: true,
+      port: 5174,
       proxy: {
         '/content_api': {
           target: 'https://api.juejin.cn',

@@ -1,7 +1,6 @@
-import { useECharts } from '@/hooks/web/useECharts';
-
 import type { EChartsOption } from 'echarts';
 import type { FC } from 'react';
+import { useECharts } from '@/hooks/web/useECharts';
 
 interface PropState {
   loading: boolean;

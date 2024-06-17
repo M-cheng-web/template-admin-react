@@ -1,7 +1,6 @@
 import { Card, Segmented, Typography } from 'antd';
 import { t } from 'i18next';
 import React from 'react';
-// import { useTranslation } from 'react-i18next';
 import type { CardProps } from 'antd/es/card';
 import { SvgIcon, Translatex } from '@/ui-common';
 

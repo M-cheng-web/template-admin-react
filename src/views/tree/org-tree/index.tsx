@@ -1,7 +1,6 @@
 import { Card, Form, Radio, Switch } from 'antd';
 import { t } from 'i18next';
 import { type FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import OrgTree from 'react-org-tree';
 
 import { PageWrapper } from '@/components/Page';
@@ -29,22 +28,27 @@ const OrgTreePage: FC = () => {
         <Form
           form={form}
           initialValues={{ ...config }}
-          layout='inline'
-          labelAlign='left'
+          layout="inline"
+          labelAlign="left"
           onValuesChange={onValuesChange}
         >
-          <Form.Item label={t('排列方式：')} name='horizontal'>
-            <Radio.Group optionType='button' buttonStyle='solid'>
-              <Radio.Button value={true}>{t('水平')}</Radio.Button>
+          <Form.Item label={t('排列方式：')} name="horizontal">
+            <Radio.Group optionType="button" buttonStyle="solid">
+              <Radio.Button value>{t('水平')}</Radio.Button>
               <Radio.Button value={false}>{t('垂直')}</Radio.Button>
             </Radio.Group>
           </Form.Item>
-          <Form.Item label={t('展开全部：')} name='expandAll' valuePropName='checked'>
+          <Form.Item label={t('展开全部：')} name="expandAll" valuePropName="checked">
             <Switch />
           </Form.Item>
         </Form>
         <div style={{ textAlign: 'center' }}>
-          <OrgTree data={data} collapsable={true} horizontal={config.horizontal} expandAll={config.expandAll} />
+          <OrgTree
+            data={data}
+            collapsable
+            horizontal={config.horizontal}
+            expandAll={config.expandAll}
+          />
         </div>
       </Card>
     </PageWrapper>

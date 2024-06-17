@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+import { appColor } from '@/settings/appBaseSetting';
+
+const { themeColorPrimary } = appColor;
+
 interface State {
   theme: string;
   setTheme: (theme: string) => void;
@@ -20,7 +24,7 @@ export const useGlobalStore = create<State>()(
         setTheme: (theme: string) => {
           set({ theme });
         },
-        preset: '#00A76F',
+        preset: themeColorPrimary, // 主题色
         setPreset: (preset: string) => {
           set({ preset });
         },

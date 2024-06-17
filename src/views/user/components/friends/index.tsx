@@ -1,15 +1,13 @@
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Avatar, Button, Card, Col, Dropdown, Flex, Row, Space, Typography } from 'antd';
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
+import type { MenuProps } from 'antd';
+import type { FC } from 'react';
 import { SvgIcon } from '@/ui-common';
 
 import travel_3 from '@/assets/images/travel_3.jpg';
 
 import useStyles from '../styles';
-
-import type { MenuProps } from 'antd';
-import type { FC } from 'react';
 
 const { Title, Text } = Typography;
 
@@ -78,36 +76,37 @@ const Friends: FC<PFriends> = () => {
   ];
 
   return (
-    <>
-      <Row gutter={[16, 16]}>
-        {FriendData.map((item, index) => (
-          <Col span={8} key={index}>
-            <Card>
-              <Dropdown menu={{ items, onClick }} placement='bottomRight' arrow>
+    <Row gutter={[16, 16]}>
+      {FriendData.map((item, index) => (
+        <Col span={8} key={index}>
+          <Card>
+            <Dropdown menu={{ items, onClick }} placement="bottomRight" arrow>
+              <Button
+                className={cx(styles['card-action'])}
+                shape="circle"
+                type="text"
+                icon={<MoreOutlined />}
+              />
+            </Dropdown>
+            <Flex gap={8} vertical align="center">
+              <Avatar size={64} src={item.avatar} />
+              <Title style={{ margin: 0 }} level={5}>
+                {item.name}
+              </Title>
+              <Text type="secondary">{item.title}</Text>
+              <Flex style={{ marginTop: 8 }} gap={8}>
                 <Button
-                  className={cx(styles['card-action'])}
-                  shape='circle'
-                  type='text'
-                  icon={<MoreOutlined />}
-                ></Button>
-              </Dropdown>
-              <Flex gap={8} vertical align={'center'}>
-                <Avatar size={64} src={item.avatar} />
-                <Title style={{ margin: 0 }} level={5}>
-                  {item.name}
-                </Title>
-                <Text type='secondary'>{item.title}</Text>
-                <Flex style={{ marginTop: 8 }} gap={8}>
-                  <Button shape='circle' icon={<SvgIcon style={{ color: '#1890ff' }} name='github' />} />
-                  <Button shape='circle' icon={<SvgIcon name='message' />} />
-                  <Button shape='circle' icon={<SvgIcon name='like' />} />
-                </Flex>
+                  shape="circle"
+                  icon={<SvgIcon style={{ color: '#1890ff' }} name="github" />}
+                />
+                <Button shape="circle" icon={<SvgIcon name="message" />} />
+                <Button shape="circle" icon={<SvgIcon name="like" />} />
               </Flex>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </>
+            </Flex>
+          </Card>
+        </Col>
+      ))}
+    </Row>
   );
 };
 

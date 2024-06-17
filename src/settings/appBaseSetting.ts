@@ -4,6 +4,12 @@ import { MenuFoldBtnEnum, MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
 
 import type { AppConfig } from '@/types/config';
 
+export const appColor = {
+  themeColorPrimary: 'rgba(123, 203, 199, 1)', // 主题色 - 首要的
+  themeColorRed: 'rgba(236, 32, 39, 1)', // 主题色 - 危险的
+  themeColorGray: 'rgba(160, 160, 160, 1)', // 主题色 - 灰色的
+};
+
 export const appSetting: AppConfig = {
   // Theme color
   themeColor: '#1890ff',

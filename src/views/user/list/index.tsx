@@ -3,7 +3,6 @@ import { useRequest } from 'ahooks';
 import { Button, Col, Flex, Row } from 'antd';
 import { t } from 'i18next';
 import { useEffect, useState } from 'react';
-// import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import type { FC } from 'react';

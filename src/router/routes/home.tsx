@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { lazy } from '@loadable/component';
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -36,19 +34,6 @@ const HomeRoute: RouteObject = {
         orderNo: 1,
         hideMenu: true,
       },
-      // async lazy() {
-      //   const Home = lazy(() => import('@/views/home/index'));
-      //   return {
-      //     Component: Home,
-      //     meta: {
-      //       title: '首页',
-      //       key: 'home',
-      //       icon: 'home',
-      //       orderNo: 1,
-      //       hideMenu: true,
-      //     },
-      //   };
-      // },
     },
   ],
 };

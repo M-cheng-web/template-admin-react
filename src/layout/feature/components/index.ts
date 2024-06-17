@@ -7,4 +7,13 @@ import SlideTheme from './SlideTheme';
 import UserDropdown from './UserDropdown';
 import Selectlangulage from './Selectlangulage';
 
-export { DocLink, FullScreen, GithubLink, GlobalSearch, Settings, SlideTheme, UserDropdown, Selectlangulage };
+export {
+  DocLink,
+  FullScreen,
+  GithubLink,
+  GlobalSearch,
+  Settings,
+  SlideTheme,
+  UserDropdown,
+  Selectlangulage,
+};

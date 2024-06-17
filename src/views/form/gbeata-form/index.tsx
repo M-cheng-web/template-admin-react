@@ -1,6 +1,5 @@
 // import { GButton } from 'gbeata';
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 const GbeataForm = () => {
   const fields: Array<any> = [

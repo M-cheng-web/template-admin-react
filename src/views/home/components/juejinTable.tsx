@@ -2,9 +2,6 @@ import { Card } from 'antd';
 // import { GSearchTable } from 'gbeata';
 import { t } from 'i18next';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-
-import { getJueJinList } from '@/api';
 
 // import type { GSearchTableField } from 'gbeata/lib/GSearchTable/g-search-table';
 

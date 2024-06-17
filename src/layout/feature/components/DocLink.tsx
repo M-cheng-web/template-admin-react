@@ -1,7 +1,6 @@
 import { ReadOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 import { openWindow } from '@/utils';
 

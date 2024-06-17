@@ -1,4 +1,4 @@
-import { chain } from "ramda";
+import { chain } from 'ramda';
 
 /**
  * Flattens a tree structure into an array.

@@ -1,7 +1,7 @@
-import { getItem, removeItem, setItem } from '@/utils/storage';
 import { create } from 'zustand';
+import { getItem, removeItem, setItem } from '@/utils/storage';
 
-import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from '#/enum';
+import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from '@/enums/appEnum';
 
 type SettingsType = {
   themeColorPresets: ThemeColorPresets;
@@ -28,7 +28,7 @@ const useSettingStore = create<SettingStore>((set) => ({
     themeStretch: false,
     breadCrumb: true,
     multiTab: true,
-    unfold: true,
+    unfold: false,
   },
   actions: {
     setSettings: (settings: SettingsType) => {

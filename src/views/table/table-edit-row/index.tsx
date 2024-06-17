@@ -16,15 +16,13 @@ import {
 import dayjs from 'dayjs';
 import { t } from 'i18next';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
+import type { ColumnType } from 'antd/es/table';
 import { PageWrapper } from '@/components/Page';
 
 import { TABLE_EDIT_COMPO } from '@/settings/websiteSetting';
 
 import { type DataItem, tableData } from './data';
-
-import type { ColumnType } from 'antd/es/table';
 
 type CellType = 'number' | 'text' | 'radio' | 'date' | 'select' | 'checkbox' | 'switch';
 
@@ -57,11 +55,13 @@ const nodeType = (type: CellType, record: DataItem) => {
     case 'text':
       return <Input />;
     case 'radio':
-      return <Radio.Group options={[t('男'), t('女')].map((item) => ({ value: item, label: item }))} />;
+      return (
+        <Radio.Group options={[t('男'), t('女')].map((item) => ({ value: item, label: item }))} />
+      );
     case 'date':
       return (
         <div>
-          <DatePicker defaultValue={dayjs(record.birth, 'YYYY-MM-DD')} format='YYYY-MM-DD' />
+          <DatePicker defaultValue={dayjs(record.birth, 'YYYY-MM-DD')} format="YYYY-MM-DD" />
         </div>
       );
     case 'select':
@@ -72,7 +72,12 @@ const nodeType = (type: CellType, record: DataItem) => {
         />
       );
     case 'checkbox':
-      return <Checkbox.Group options={record.hobby.split('、')} defaultValue={record.hobby.split('、')} />;
+      return (
+        <Checkbox.Group
+          options={record.hobby.split('、')}
+          defaultValue={record.hobby.split('、')}
+        />
+      );
     case 'switch':
       return <Switch defaultChecked={record.forbid} />;
   }
@@ -150,7 +155,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('编号')}</span>
-          <p className='sub-title'>{t('(数字输入框)')}</p>
+          <p className="sub-title">{t('(数字输入框)')}</p>
         </>
       ),
 
@@ -163,7 +168,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('姓名')}</span>
-          <p className='sub-title'>{t('(输入框)')}</p>
+          <p className="sub-title">{t('(输入框)')}</p>
         </>
       ),
 
@@ -176,7 +181,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('性别')}</span>
-          <p className='sub-title'>{t('(单选框)')}</p>
+          <p className="sub-title">{t('(单选框)')}</p>
         </>
       ),
 
@@ -189,7 +194,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('生日')}</span>
-          <p className='sub-title'>{t('(日期选择器)')}</p>
+          <p className="sub-title">{t('(日期选择器)')}</p>
         </>
       ),
 
@@ -202,7 +207,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('学历')}</span>
-          <p className='sub-title'>{t('(选择器)')}</p>
+          <p className="sub-title">{t('(选择器)')}</p>
         </>
       ),
 
@@ -215,7 +220,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('爱好')}</span>
-          <p className='sub-title'>{t('(多选框)')}</p>
+          <p className="sub-title">{t('(多选框)')}</p>
         </>
       ),
 
@@ -228,7 +233,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('禁止编辑')}</span>
-          <p className='sub-title'>{t('(开关)')}</p>
+          <p className="sub-title">{t('(开关)')}</p>
         </>
       ),
 
@@ -242,7 +247,7 @@ const TableEditRow: React.FC = () => {
       title: () => (
         <>
           <span>{t('操作')}</span>
-          <p className='sub-title'>{t('(按钮)')}</p>
+          <p className="sub-title">{t('(按钮)')}</p>
         </>
       ),
 
@@ -253,11 +258,11 @@ const TableEditRow: React.FC = () => {
         const editable = isEditing(record);
         return editable ? (
           <Space>
-            <Button type='primary' ghost onClick={() => save(record.key)}>
+            <Button type="primary" ghost onClick={() => save(record.key)}>
               {t('保存')}
             </Button>
             <Popconfirm title={t('是否取消编辑？')} onConfirm={cancel}>
-              <Button type='primary' danger ghost>
+              <Button type="primary" danger ghost>
                 {t('取消')}
               </Button>
             </Popconfirm>

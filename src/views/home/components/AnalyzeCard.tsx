@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
-import { useTranslation } from 'react-i18next';
 import { BaseCard } from '@/ui-common';
 
 import SvgIcon from '@/components/SvgIcon';
@@ -28,17 +27,21 @@ export const AnalyzeCard = () => {
       <Col span={8}>
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
-            <div className='card-left'>
+            <div className="card-left">
               <Text strong>{t('活跃用户数量')}</Text>
-              <Title className='count' level={5} style={{ margin: '8px 0' }}>
-                <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
+              <Title className="count" level={5} style={{ margin: '8px 0' }}>
+                <SvgIcon
+                  size={20}
+                  style={{ marginRight: '4px', color: token.colorPrimary }}
+                  name="solar"
+                />
                 +2.6%
               </Title>
               <Title level={2} style={{ margin: 0 }}>
                 <CountUp start={0} end={122} duration={3} />
               </Title>
             </div>
-            <div className='card-right'>
+            <div className="card-right">
               <ChartsCard
                 loading={loading}
                 options={{
@@ -82,7 +85,7 @@ export const AnalyzeCard = () => {
                     },
                   ],
                 }}
-              ></ChartsCard>
+              />
             </div>
           </div>
         </BaseCard>
@@ -90,21 +93,25 @@ export const AnalyzeCard = () => {
       <Col span={8}>
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
-            <div className='card-left'>
+            <div className="card-left">
               <Text strong>{t('总下载量')}</Text>
-              <Title className='count' level={5} style={{ margin: '8px 0' }}>
+              <Title className="count" level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon
                   size={20}
-                  style={{ marginRight: '4px', color: token.colorError, transform: 'rotate(180deg)' }}
-                  name='solar'
-                ></SvgIcon>
+                  style={{
+                    marginRight: '4px',
+                    color: token.colorError,
+                    transform: 'rotate(180deg)',
+                  }}
+                  name="solar"
+                />
                 -2.6%
               </Title>
               <Title level={2} style={{ margin: 0 }}>
                 <CountUp start={0} end={1322} duration={3} />
               </Title>
             </div>
-            <div className='card-right'>
+            <div className="card-right">
               <ChartsCard
                 loading={loading}
                 options={{
@@ -148,7 +155,7 @@ export const AnalyzeCard = () => {
                     },
                   ],
                 }}
-              ></ChartsCard>
+              />
             </div>
           </div>
         </BaseCard>
@@ -156,17 +163,21 @@ export const AnalyzeCard = () => {
       <Col span={8}>
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
-            <div className='card-left'>
+            <div className="card-left">
               <Text strong>{t('总安装数量')}</Text>
-              <Title className='count' level={5} style={{ margin: '8px 0' }}>
-                <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
+              <Title className="count" level={5} style={{ margin: '8px 0' }}>
+                <SvgIcon
+                  size={20}
+                  style={{ marginRight: '4px', color: token.colorPrimary }}
+                  name="solar"
+                />
                 +5.6%
               </Title>
               <Title level={2} style={{ margin: 0 }}>
                 <CountUp start={0} end={12322} duration={3} />
               </Title>
             </div>
-            <div className='card-right'>
+            <div className="card-right">
               <ChartsCard
                 loading={loading}
                 options={{
@@ -210,7 +221,7 @@ export const AnalyzeCard = () => {
                     },
                   ],
                 }}
-              ></ChartsCard>
+              />
             </div>
           </div>
         </BaseCard>

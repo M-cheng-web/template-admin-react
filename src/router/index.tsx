@@ -1,11 +1,8 @@
 import { t } from 'i18next';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { createHashRouter, Navigate, redirect, useRoutes } from 'react-router-dom';
 
-import { getAuthCache } from '@/utils/auth';
+import { getToken } from '@/utils/auth';
 
-import { TOKEN_KEY } from '@/enums/cacheEnum';
 import { ExceptionEnum } from '@/enums/exceptionEnum';
 import PageException from '@/views/exception';
 import LoginPage from '@/views/login';
@@ -13,6 +10,14 @@ import LoginPage from '@/views/login';
 import { genFullPath } from './helpers';
 
 import type { RouteObject } from './types';
+
+import { useAxiosNavigation } from '@/utils/http/http_interceptor';
+
+const AxiosNavigation = ({ children }: any) => {
+  useAxiosNavigation();
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{children}</>;
+};
 
 const metaRoutes = import.meta.glob('./routes/*.tsx', { eager: true }) as Recordable;
 
@@ -28,17 +33,21 @@ Object.keys(metaRoutes).forEach((key) => {
 const rootRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to='/home' />,
+    element: <Navigate to="/home" />,
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <AxiosNavigation>
+        <LoginPage />
+      </AxiosNavigation>
+    ),
     meta: {
-      title: t('登录页'),
+      title: t('login-title'),
       key: 'login',
     },
     loader: () => {
-      if (getAuthCache<string>(TOKEN_KEY)) {
+      if (getToken()) {
         return redirect('/');
       }
       return null;
@@ -47,7 +56,7 @@ const rootRoutes: RouteObject[] = [
   ...routeList,
   {
     path: '*',
-    element: <Navigate to='/404' />,
+    element: <Navigate to="/404" />,
   },
   {
     path: '/403',

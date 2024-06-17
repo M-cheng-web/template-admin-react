@@ -1,14 +1,13 @@
 import { Card, Col, Flex, Row, Tag, Upload } from 'antd';
 // import { GButton, GForm } from 'gbeata';
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import type { FC } from 'react';
 import { SvgIcon, Translatex } from '@/ui-common';
 
 import useStyles from './style';
 
 // import type { FormValues } from 'gbeata/lib/types/FormValues';
-import type { FC } from 'react';
 
 interface PAddUser {
   onAdd?: (user: any) => void;
@@ -62,20 +61,20 @@ const AddUser: FC<PAddUser> = () => {
     navigate('/user/user-list');
   };
   return (
-    <Translatex direction='left' run={true} delay={100}>
+    <Translatex direction="left" run delay={100}>
       <Row gutter={[16, 16]}>
         <Col span={8}>
           <Card>
             <Dragger
               // defaultFileList={dragImgs}
-              action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
-              accept='.jpg, .jpeg, .gif, .png, .bmp'
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              accept=".jpg, .jpeg, .gif, .png, .bmp"
               multiple
               className={styles['custom-upload-drag']}
             >
-              <div className='add-phone-box'>
-                <Flex align='center' vertical justify='center' className='add-phone'>
-                  <SvgIcon name='camera' size={24} />
+              <div className="add-phone-box">
+                <Flex align="center" vertical justify="center" className="add-phone">
+                  <SvgIcon name="camera" size={24} />
                   <span>upload phone</span>
                 </Flex>
               </div>
@@ -83,13 +82,15 @@ const AddUser: FC<PAddUser> = () => {
                 {t('将图片拖到此处, 或')}
                 <span style={{ color: '#1890ff' }}>{t('点击上传')}</span>
               </p>
-              <p className='ant-upload-hint'>{t('只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb')}</p>
+              <p className="ant-upload-hint">
+                {t('只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb')}
+              </p>
             </Dragger>
           </Card>
         </Col>
         <Col span={16}>
           <Card>
-          GForm {t('创建用户')}
+            GForm {t('创建用户')}
             {/* <GForm fields={fields} span={12} onConfirm={onFinish}>
               <Flex justify='end' className={styles['btn-submit']}>
                 <GButton type='primary' htmlType='submit'>

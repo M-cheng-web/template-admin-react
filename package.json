@@ -1,7 +1,7 @@
 {
-  "name": "template-admin-react",
+  "name": "management-platform-web",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -37,9 +37,10 @@
     "@vitejs/plugin-react-swc": "^3.6.0",
     "@wangeditor/editor": "^5.1.23",
     "ahooks": "^3.7.11",
-    "antd": "5.12.1",
+    "antd": "5.16.0",
     "antd-style": "3.6.1",
     "axios": "^1.6.8",
+    "blueimp-md5": "^2.19.0",
     "classnames": "^2.3.2",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.11",
@@ -82,6 +83,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@types/blueimp-md5": "^2.18.2",
     "@types/crypto-js": "^4.2.2",
     "@types/file-saver": "^2.0.7",
     "@types/fs-extra": "^11.0.4",

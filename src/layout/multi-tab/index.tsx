@@ -1,38 +1,46 @@
 import { Dropdown, type MenuProps, Tabs, TabsProps } from 'antd';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 import IconifyIcon from '@/components/iconify-icon';
 
 import useKeepAlive, { type KeepAliveTab } from '@/hooks/web/useKeepAlive';
 
-import { MultiTabOperation, ThemeLayout } from '#/enum';
+import { MultiTabOperation, ThemeLayout } from '@/enums/appEnum';
 
 type Props = {
   offsetTop?: boolean;
 };
 
 export default function MultiTabs({ offsetTop = true }: Props) {
-  const { t } = useTranslation();
   const tabContentRef = useRef(null);
   const [openDropdownTabKey, setopenDropdownTabKey] = useState('');
 
   const [hoveringTabKey, setHoveringTabKey] = useState('');
 
-  const { tabs, activeTabRoutePath, setTabs, closeTab, refreshTab, closeOthersTab, closeAll, closeLeft, closeRight } =
-    useKeepAlive();
+  const {
+    tabs,
+    activeTabRoutePath,
+    setTabs,
+    closeTab,
+    refreshTab,
+    closeOthersTab,
+    closeAll,
+    closeLeft,
+    closeRight,
+  } = useKeepAlive();
 
   const menuItems = useMemo<MenuProps['items']>(() => {
     return [
       {
         label: t('刷新'),
         key: MultiTabOperation.REFRESH,
-        icon: <IconifyIcon icon='ant-design:reload-outlined' size={16} />,
+        icon: <IconifyIcon icon="ant-design:reload-outlined" size={16} />,
       },
       {
         label: t('关闭当前'),
         key: MultiTabOperation.CLOSE,
-        icon: <IconifyIcon icon='ant-design:close-circle-outlined' size={16} />,
+        icon: <IconifyIcon icon="ant-design:close-circle-outlined" size={16} />,
       },
       {
         type: 'divider',
@@ -40,22 +48,22 @@ export default function MultiTabs({ offsetTop = true }: Props) {
       {
         label: t('关闭右侧'),
         key: MultiTabOperation.CLOSERIGHT,
-        icon: <IconifyIcon icon='ant-design:close-circle-outlined' size={16} />,
+        icon: <IconifyIcon icon="ant-design:close-circle-outlined" size={16} />,
       },
       {
         label: t('关闭左侧'),
         key: MultiTabOperation.CLOSELEFT,
-        icon: <IconifyIcon icon='ant-design:close-circle-outlined' size={16} />,
+        icon: <IconifyIcon icon="ant-design:close-circle-outlined" size={16} />,
       },
       {
         label: t('关闭其他'),
         key: MultiTabOperation.CLOSEOTHERS,
-        icon: <IconifyIcon icon='ant-design:close-circle-outlined' size={16} />,
+        icon: <IconifyIcon icon="ant-design:close-circle-outlined" size={16} />,
       },
       {
         label: t('关闭全部'),
         key: MultiTabOperation.CLOSEALL,
-        icon: <IconifyIcon icon='ant-design:close-circle-outlined' size={16} />,
+        icon: <IconifyIcon icon="ant-design:close-circle-outlined" size={16} />,
       },
     ];
   }, [openDropdownTabKey, t, tabs]);
@@ -123,16 +131,17 @@ export default function MultiTabs({ offsetTop = true }: Props) {
           >
             <div>{t(tab.label)}</div>
             <IconifyIcon
-              icon='ion:close-outline'
+              icon="ion:close-outline"
               size={18}
-              className='cursor-pointer opacity-50'
+              className="cursor-pointer opacity-50"
               onClick={(e) => {
                 e.stopPropagation();
                 closeTab(tab.key);
               }}
               style={{
                 visibility:
-                  (tab.key !== activeTabRoutePath && tab.key !== hoveringTabKey) || tabs.length === 1
+                  (tab.key !== activeTabRoutePath && tab.key !== hoveringTabKey) ||
+                  tabs.length === 1
                     ? 'hidden'
                     : 'visible',
               }}
@@ -163,8 +172,8 @@ export default function MultiTabs({ offsetTop = true }: Props) {
 
   return (
     <Tabs
-      size='small'
-      type='card'
+      size="small"
+      type="card"
       tabBarGutter={4}
       activeKey={activeTabRoutePath}
       items={tabItems}

@@ -1,16 +1,26 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Button, Card, Modal, Popover, Select, Space, Switch, Table, type TableProps, Tag } from 'antd';
+import {
+  Button,
+  Card,
+  Modal,
+  Popover,
+  Select,
+  Space,
+  Switch,
+  Table,
+  type TableProps,
+  Tag,
+} from 'antd';
 import { t } from 'i18next';
 import { type FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
+import type { ColumnsType } from 'antd/es/table';
 import { PageWrapper } from '@/components/Page';
 
 import { getTableList } from '@/api';
 import { TABLE_COMPO } from '@/settings/websiteSetting';
 
 import type { APIResult, PageState, TableDataType } from './types';
-import type { ColumnsType } from 'antd/es/table';
 
 const marriedOptions = [
   { label: t('单身'), value: 0 },
@@ -56,7 +66,7 @@ const TableBasic: FC = () => {
 
         return (
           <Popover content={content}>
-            <Tag color='blue'>{record.name}</Tag>
+            <Tag color="blue">{record.name}</Tag>
           </Popover>
         );
       },
@@ -81,7 +91,11 @@ const TableBasic: FC = () => {
       dataIndex: 'married',
       align: 'center',
       render: (text, record: any) => (
-        <Select options={marriedOptions} defaultValue={record.married} onChange={(value) => (record.married = value)} />
+        <Select
+          options={marriedOptions}
+          defaultValue={record.married}
+          onChange={(value) => (record.married = value)}
+        />
       ),
     },
     {
@@ -156,7 +170,7 @@ const TableBasic: FC = () => {
     <PageWrapper plugin={TABLE_COMPO}>
       <Card bordered={false}>
         <Table
-          rowKey='id'
+          rowKey="id"
           rowSelection={tableSelection}
           columns={columns}
           dataSource={tableData}

@@ -11,7 +11,6 @@ import {
 import { Avatar, Button, Card, Col, Divider, Flex, Image, List, Row, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { t } from 'i18next';
-// import { useTranslation } from 'react-i18next';
 import type { FC } from 'react';
 import { SvgIcon } from '@/ui-common';
 

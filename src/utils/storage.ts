@@ -1,6 +1,10 @@
-import type { StorageEnum } from '#/enum';
+import { TOKEN_KEY } from '@/enums/cacheEnum';
 
-export const getItem = <T>(key: StorageEnum): T | null => {
+export function getToken() {
+  return getItem(TOKEN_KEY);
+}
+
+export const getItem = <T>(key: string): T | null => {
   let value = null;
   try {
     const result = window.localStorage.getItem(key);
@@ -13,14 +17,14 @@ export const getItem = <T>(key: StorageEnum): T | null => {
   return value;
 };
 
-export const getStringItem = (key: StorageEnum): string | null => {
+export const getStringItem = (key: string): string | null => {
   return localStorage.getItem(key);
 };
 
-export const setItem = <T>(key: StorageEnum, value: T): void => {
+export const setItem = <T>(key: string, value: T): void => {
   localStorage.setItem(key, JSON.stringify(value));
 };
-export const removeItem = (key: StorageEnum): void => {
+export const removeItem = (key: string): void => {
   localStorage.removeItem(key);
 };
 export const clearItems = () => {

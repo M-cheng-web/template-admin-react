@@ -1,18 +1,11 @@
-import {
-  intersectionWith,
-  isArray,
-  isEqual,
-  isObject,
-  mergeWith,
-  unionWith,
-} from "lodash-es";
+import { intersectionWith, isArray, isEqual, isObject, mergeWith, unionWith } from 'lodash-es';
 
 export function openWindow(
   url: string,
   opt?: {
-    target?: TargetContext | string
-    noopener?: boolean
-    noreferrer?: boolean
+    target?: TargetContext | string;
+    noopener?: boolean;
+    noreferrer?: boolean;
   },
 ) {
   const { target = '__blank', noopener = true, noreferrer = true } = opt || {};
@@ -24,7 +17,11 @@ export function openWindow(
   window.open(url, target, feature.join(','));
 }
 
-export function promiseTimeout(ms: number, throwOnTimeout = false, reason = 'Timeout'): Promise<void> {
+export function promiseTimeout(
+  ms: number,
+  throwOnTimeout = false,
+  reason = 'Timeout',
+): Promise<void> {
   return new Promise((resolve, reject) => {
     if (throwOnTimeout) setTimeout(() => reject(reason), ms);
     else setTimeout(resolve, ms);
@@ -32,6 +29,7 @@ export function promiseTimeout(ms: number, throwOnTimeout = false, reason = 'Tim
 }
 
 export const searchRoute: any = (path: string, routes: any = []) => {
+  // eslint-disable-next-line no-restricted-syntax
   for (const item of routes) {
     if (item.path === path || item.fullPath === path) return item;
     if (item.children) {
@@ -56,13 +54,10 @@ export const searchRoute: any = (path: string, routes: any = []) => {
  *        - "replace": Replace the source array with the target array. 用目标数组替换源数组。
  * @returns The merged object. 合并后的对象。
  */
-export function deepMerge<
-  T extends object | null | undefined,
-  U extends object | null | undefined,
->(
+export function deepMerge<T extends object | null | undefined, U extends object | null | undefined>(
   source: T,
   target: U,
-  mergeArrays: "union" | "intersection" | "concat" | "replace" = "replace"
+  mergeArrays: 'union' | 'intersection' | 'concat' | 'replace' = 'replace',
 ): T & U {
   if (!target) {
     return source as T & U;
@@ -73,18 +68,16 @@ export function deepMerge<
   return mergeWith({}, source, target, (sourceValue, targetValue) => {
     if (isArray(targetValue) && isArray(sourceValue)) {
       switch (mergeArrays) {
-        case "union":
+        case 'union':
           return unionWith(sourceValue, targetValue, isEqual);
-        case "intersection":
+        case 'intersection':
           return intersectionWith(sourceValue, targetValue, isEqual);
-        case "concat":
+        case 'concat':
           return sourceValue.concat(targetValue);
-        case "replace":
+        case 'replace':
           return targetValue;
         default:
-          throw new Error(
-            `Unknown merge array strategy: ${mergeArrays as string}`
-          );
+          throw new Error(`Unknown merge array strategy: ${mergeArrays as string}`);
       }
     }
     if (isObject(targetValue) && isObject(sourceValue)) {
@@ -92,4 +85,14 @@ export function deepMerge<
     }
     return undefined;
   });
+}
+
+/**
+ * 校验key是否在对象中
+ */
+export function isValidKey(
+  key: string | number | symbol,
+  object: object,
+): key is keyof typeof object {
+  return key in object;
 }

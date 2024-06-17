@@ -2,7 +2,6 @@ import { Alert, Card, Col, Row, Slider } from 'antd';
 // import { GSearch, type GSearchField } from 'gbeata';
 import { t } from 'i18next';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import type { FC } from 'react';
 import { PageWrapper } from '@/components/Page';

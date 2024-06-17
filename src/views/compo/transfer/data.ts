@@ -1,7 +1,4 @@
 import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
-
-import type { TransferItem, TransferProps } from 'antd/es/transfer';
 
 interface DataState {
   key: string;

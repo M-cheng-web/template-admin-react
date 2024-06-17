@@ -1,6 +1,6 @@
-import { isObject, isString } from "lodash-es";
+import { isObject, isString } from 'lodash-es';
 
-const DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
+const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 declare type Recordable<T = any> = Record<string, T>;
 /**
  * 格式化请求日期参数，通过递归迭代对象并将日期值应用格式化。
@@ -9,12 +9,12 @@ declare type Recordable<T = any> = Record<string, T>;
  * @return {void} 此函数不返回值。
  */
 export function formatRequestDate(params: Recordable) {
-  if (Object.prototype.toString.call(params) !== "[object Object]") {
+  if (Object.prototype.toString.call(params) !== '[object Object]') {
     return;
   }
   Object.keys(params).forEach((key) => {
     const format = params[key]?.format ?? null;
-    if (format && typeof format === "function") {
+    if (format && typeof format === 'function') {
       // eslint-disable-next-line no-param-reassign
       params[key] = params[key].format(DATE_TIME_FORMAT);
     }
@@ -33,7 +33,7 @@ export function formatRequestDate(params: Recordable) {
 
 export function joinTimestamp(join: boolean, restful = false): string | object {
   if (!join) {
-    return restful ? "" : {};
+    return restful ? '' : {};
   }
   const now = new Date().getTime();
   if (restful) {
@@ -56,7 +56,7 @@ export function joinTimestamp(join: boolean, restful = false): string | object {
 export function setObjToUrlParams(baseUrl: string, obj: any): string {
   const parameters = Object.keys(obj)
     .map((key) => `${key}=${encodeURIComponent(obj[key])}`)
-    .join("&");
+    .join('&');
 
   return parameters ? `${baseUrl}?${parameters}` : baseUrl;
 }

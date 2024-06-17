@@ -11,10 +11,10 @@ const initialState: TagsState = {
 };
 
 const createAppAsyncThunk = createAsyncThunk.withTypes<{
-  state: RootState
-  dispatch: AppDispatch
-  rejectValue: string
-  extra: { s: string; n: number }
+  state: RootState;
+  dispatch: AppDispatch;
+  rejectValue: string;
+  extra: { s: string; n: number };
 }>();
 
 const tags = createSlice({
@@ -26,7 +26,10 @@ const tags = createSlice({
       if (hasExistIndex < 0) {
         state.visitedTags.push(action.payload);
       } else {
-        state.visitedTags[hasExistIndex] = { ...state.visitedTags[hasExistIndex], ...action.payload };
+        state.visitedTags[hasExistIndex] = {
+          ...state.visitedTags[hasExistIndex],
+          ...action.payload,
+        };
       }
     },
     updateVisitedTags: (state, action) => {
@@ -48,29 +51,37 @@ const tags = createSlice({
         case 'other':
           restTags = visitedTags.filter((tag: any) => tag.fullPath === path);
           break;
+        default:
+          break;
       }
       state.visitedTags = affixTags.concat(restTags.filter((tag: RouteObject) => !tag.meta?.affix));
     },
   },
 });
 
-export const closeTagByKey = createAppAsyncThunk('tags/closeTagByKey', (path: string, { getState, dispatch }) => {
-  const { visitedTags } = getState().tags;
-  const tagIndex = visitedTags.findIndex((tag: any) => tag.fullPath === path);
-  const restTags = visitedTags.filter((tag: any) => tag.fullPath !== path);
-  dispatch(updateVisitedTags(restTags));
-  return Promise.resolve({
-    tagIndex,
-    tagsList: restTags,
-  });
-});
+export const closeTagByKey = createAppAsyncThunk(
+  'tags/closeTagByKey',
+  (path: string, { getState, dispatch }) => {
+    const { visitedTags } = getState().tags;
+    const tagIndex = visitedTags.findIndex((tag: any) => tag.fullPath === path);
+    const restTags = visitedTags.filter((tag: any) => tag.fullPath !== path);
+    dispatch(updateVisitedTags(restTags));
+    return Promise.resolve({
+      tagIndex,
+      tagsList: restTags,
+    });
+  },
+);
 
-export const closeAllTags = createAppAsyncThunk('tags/closeAllTags', (_, { getState, dispatch }) => {
-  const { visitedTags } = getState().tags;
-  const restTags = visitedTags.filter((tag: any) => tag?.meta?.affix);
-  dispatch(updateVisitedTags(restTags));
-  return Promise.resolve(restTags);
-});
+export const closeAllTags = createAppAsyncThunk(
+  'tags/closeAllTags',
+  (_, { getState, dispatch }) => {
+    const { visitedTags } = getState().tags;
+    const restTags = visitedTags.filter((tag: any) => tag?.meta?.affix);
+    dispatch(updateVisitedTags(restTags));
+    return Promise.resolve(restTags);
+  },
+);
 
 export const { addVisitedTags, updateVisitedTags, closeTagsByType } = tags.actions;
 

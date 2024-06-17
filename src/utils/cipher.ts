@@ -4,8 +4,8 @@ import ECB from 'crypto-js/mode-ecb';
 import PKCS7 from 'crypto-js/pad-pkcs7';
 
 export interface EncryptParams {
-  key: string
-  iv: string
+  key: string;
+  iv: string;
 }
 
 export class AesEncrypt {

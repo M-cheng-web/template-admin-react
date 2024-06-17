@@ -3,9 +3,7 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
-// const currentLanguage = window.location.search.split('=')[1];
-const currentLanguage =
-  navigator.languages && navigator.languages.length ? navigator.languages[0] : 'zh';
+const currentLanguage = 'zh';
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)

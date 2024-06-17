@@ -2,23 +2,27 @@ import { CloseOutlined, LeftOutlined, RedoOutlined, RightOutlined } from '@ant-d
 import { Button, Dropdown } from 'antd';
 import classNames from 'classnames';
 import { type FC, useEffect, useRef, useState, type WheelEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import type { MenuProps } from 'antd';
 import { searchRoute } from '@/utils';
 
 import { basicRoutes } from '@/router';
 import { useAppDispatch, useAppSelector } from '@/stores';
-import { addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType, updateVisitedTags } from '@/stores/modules/tags';
+import {
+  addVisitedTags,
+  closeAllTags,
+  closeTagByKey,
+  closeTagsByType,
+} from '@/stores/modules/tags';
 
 import { TagItem } from './components';
 import useStyles from './index.module.style';
 
 import type { RouteObject } from '@/router/types';
-import type { MenuProps } from 'antd';
 
 const LayoutTags: FC = () => {
-  const { t } = useTranslation();
   const { styles } = useStyles();
   const items: MenuProps['items'] = [
     { key: 'left', label: t('关闭左侧') },
@@ -74,7 +78,7 @@ const LayoutTags: FC = () => {
     moveToActiveTag(activeTagNode);
   }, [activeTag]);
 
-  const initAffixTags = (routes: RouteObject[], basePath: string = '/') => {
+  const initAffixTags = (routes: RouteObject[], basePath = '/') => {
     const affixTags: RouteObject[] = [];
 
     const processRoute = (route: RouteObject) => {
@@ -96,7 +100,7 @@ const LayoutTags: FC = () => {
   };
 
   const moveToActiveTag = (tag: any) => {
-    let leftOffset: number = 0;
+    let leftOffset = 0;
     const mainBodyPadding = 4;
     const mainWidth = tagsMain.current?.offsetWidth!;
     const mainBodyWidth = tagsMainBody.current?.offsetWidth!;
@@ -110,16 +114,22 @@ const LayoutTags: FC = () => {
       (tag?.offsetLeft ?? 0) + (tag?.offsetWidth ?? 0) < -tagsBodyLeft + mainWidth
     ) {
       // 标签在可视区域 (The active tag on the layout_tags-main)
-      leftOffset = Math.min(0, mainWidth - (tag?.offsetWidth ?? 0) - (tag?.offsetLeft ?? 0) - mainBodyPadding);
+      leftOffset = Math.min(
+        0,
+        mainWidth - (tag?.offsetWidth ?? 0) - (tag?.offsetLeft ?? 0) - mainBodyPadding,
+      );
     } else {
       // 标签在可视区域右侧 (The active tag on the right side of the layout_tags-main)
-      leftOffset = -((tag?.offsetLeft ?? 0) - (mainWidth - mainBodyPadding - (tag?.offsetWidth ?? 0)));
+      leftOffset = -(
+        (tag?.offsetLeft ?? 0) -
+        (mainWidth - mainBodyPadding - (tag?.offsetWidth ?? 0))
+      );
     }
     setTagsBodyLeft(leftOffset);
   };
 
   const handleMove = (offset: number) => {
-    let leftOffset: number = 0;
+    let leftOffset = 0;
     const mainWidth = tagsMain.current?.offsetWidth!;
     const mainBodyWidth = tagsMainBody.current?.offsetWidth!;
 
@@ -137,7 +147,7 @@ const LayoutTags: FC = () => {
 
   const handleScroll = (e: WheelEvent) => {
     const { type } = e;
-    let distance: number = 0;
+    let distance = 0;
 
     if (type === 'wheel') {
       distance = e.deltaY ? e.deltaY * 2 : -(e.detail || 0) * 2;
@@ -173,7 +183,7 @@ const LayoutTags: FC = () => {
   }
   const handleReload = () => {
     // 刷新当前路由，页面不刷新
-    const index = visitedTags.findIndex((tab) => tab.fullPath === activeTag);
+    const index = visitedTags.findIndex((tab: any) => tab.fullPath === activeTag);
     if (index >= 0) {
       // 这个是react的特性，key变了，组件会卸载重新渲染
       navigate(activeTag, { replace: true, state: { key: getKey() } });
@@ -185,12 +195,16 @@ const LayoutTags: FC = () => {
       <Button
         className={`${styles.layout_tags}__btn`}
         icon={<LeftOutlined />}
-        size='small'
+        size="small"
         onClick={() => handleMove(200)}
       />
 
       <div ref={tagsMain} className={`${styles.layout_tags}__main`} onWheel={handleScroll}>
-        <div ref={tagsMainBody} className={`${styles.layout_tags}__main-body`} style={{ left: `${tagsBodyLeft}px` }}>
+        <div
+          ref={tagsMainBody}
+          className={`${styles.layout_tags}__main-body`}
+          style={{ left: `${tagsBodyLeft}px` }}
+        >
           {visitedTags.map((item: RouteObject) => (
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
@@ -208,22 +222,22 @@ const LayoutTags: FC = () => {
       <Button
         className={`${styles.layout_tags}__btn`}
         icon={<RightOutlined />}
-        size='small'
+        size="small"
         onClick={() => handleMove(-200)}
       />
 
       <Button
         className={classNames(`${styles.layout_tags}__btn`, `${styles.layout_tags}__btn-space`)}
         icon={<RedoOutlined />}
-        size='small'
+        size="small"
         onClick={() => handleReload()}
       />
 
-      <Dropdown menu={{ items, onClick }} placement='bottomLeft'>
+      <Dropdown menu={{ items, onClick }} placement="bottomLeft">
         <Button
           className={classNames(`${styles.layout_tags}__btn`, `${styles.layout_tags}__btn-space`)}
           icon={<CloseOutlined />}
-          size='small'
+          size="small"
         />
       </Dropdown>
     </div>

@@ -3,7 +3,6 @@ import { Alert, Button, Checkbox, Form, Input, message, Typography } from 'antd'
 import classNames from 'classnames';
 import { t } from 'i18next';
 import { type FC, useRef, useState } from 'react';
-// import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import type { FormInstance } from 'antd/es/form';
